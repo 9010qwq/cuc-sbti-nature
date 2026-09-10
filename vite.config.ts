@@ -1,7 +1,12 @@
 import { defineConfig } from "vite";
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: "./",
-  build: {
+  build: mode === "web" ? {
+    outDir: "dist-web",
+    target: "es2020",
+    assetsInlineLimit: 0,
+    cssCodeSplit: false,
+  } : {
     target: "es2020",
     assetsInlineLimit: 100000000,
     cssCodeSplit: false,
@@ -12,4 +17,4 @@ export default defineConfig({
       fileName: () => "app.js",
     },
   },
-});
+}));

@@ -86,7 +86,7 @@ let page: Page = "home",
   revealTimer = 0,
   toastTimer = 0;
 const img = (code: string, cls = "", alt = "") =>
-  `<img class="${cls}" src="${art[code]}" alt="${esc(alt)}" decoding="async">`;
+  `<img class="${cls}" src="${art[code]}" alt="${esc(alt)}" decoding="async" loading="${cls ? "eager" : "lazy"}">`;
 const btn = (action: string, label: string, cls = "secondary", extra = "") =>
   `<button type="button" class="${cls}" data-action="${action}" ${extra}>${label}</button>`;
 function toast(message: string) {

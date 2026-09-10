@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "url": "https://9010qwq.github.io/cuc-sbti-nature/",
+  "status": "built",
+  "source": {
+    "branch": "gh-pages",
+    "path": "/"
+  },
+  "https": true,
+  "build": {
+    "status": "built",
+    "commit": "988cdacc4b72480d03d732f71b9508091c7be383",
+    "error": {
+      "message": null
+    }
+  }
+}

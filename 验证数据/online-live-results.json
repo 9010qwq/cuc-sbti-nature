@@ -1,0 +1,370 @@
+{
+  "environment": "Isolated desktop Edge/Chromium with mobile viewport emulation; no physical phone test",
+  "checks": [
+    "online home returns HTTP 200",
+    "home illustrations load as separate HTTP files",
+    "web font loads as a separate HTTP file",
+    "Chinese web font available",
+    "homepage carries exact WeChat credit",
+    "frog first sighting is recorded",
+    "all 24 answers reach interest tie selection",
+    "online scoring resolves black hole EAT",
+    "result card contains exact WeChat credit",
+    "two sightings offer the hidden visitor",
+    "frog reveal loads its separate image",
+    "canvas remains exportable after frog sticker",
+    "result has no horizontal overflow at 390px",
+    "whole 3:4 screenshot card fits 390x844",
+    "result has no horizontal overflow at 320px",
+    "whole 3:4 screenshot card fits 320x568",
+    "long-press image preview is 1080x1440",
+    "downloaded PNG has valid signature and dimensions",
+    "all HTTP resources succeeded with no 404",
+    "no failed network requests",
+    "no script or cross-origin canvas errors"
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "requestFailures": [],
+  "homepage": {
+    "elapsedMs": 3716,
+    "responseBodyBytes": 4302116,
+    "responseWithHeadersBytes": 4302116,
+    "requests": 23,
+    "imageRequests": 3,
+    "fontRequests": 17,
+    "resources": [
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/",
+        "type": "document",
+        "bodyBytes": 767,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/style-fxx1K_iW.css",
+        "type": "stylesheet",
+        "bodyBytes": 37059,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/index-BrvSFqyR.js",
+        "type": "script",
+        "bodyBytes": 19438,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/BHSF-DglFaSTZ.png",
+        "type": "image",
+        "bodyBytes": 1281179,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/BOTP-DAGgnvG1.png",
+        "type": "image",
+        "bodyBytes": 1191010,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-90-400-normal-DRuAc-VY.woff2",
+        "type": "font",
+        "bodyBytes": 5529,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-117-400-normal-QPrBdlQO.woff2",
+        "type": "font",
+        "bodyBytes": 28193,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-115-400-normal-BQfWDt6M.woff2",
+        "type": "font",
+        "bodyBytes": 30131,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-111-400-normal-C5Xi9UGz.woff2",
+        "type": "font",
+        "bodyBytes": 33336,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-106-400-normal-DDMMORp2.woff2",
+        "type": "font",
+        "bodyBytes": 33417,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-113-400-normal-DZoqVzDv.woff2",
+        "type": "font",
+        "bodyBytes": 31158,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-latin-400-normal-C8q2FS1w.woff2",
+        "type": "font",
+        "bodyBytes": 13458,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-118-400-normal-CqQ_A8sl.woff2",
+        "type": "font",
+        "bodyBytes": 24872,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-119-400-normal-flOVnW3A.woff2",
+        "type": "font",
+        "bodyBytes": 41449,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-112-400-normal-F9zvXQVU.woff2",
+        "type": "font",
+        "bodyBytes": 30809,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-114-400-normal-CZUMxNv_.woff2",
+        "type": "font",
+        "bodyBytes": 31055,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-87-400-normal-BGelIZWt.woff2",
+        "type": "font",
+        "bodyBytes": 5547,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-116-400-normal-B9rv4EzF.woff2",
+        "type": "font",
+        "bodyBytes": 28272,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-105-400-normal-BiKizsW3.woff2",
+        "type": "font",
+        "bodyBytes": 32959,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-108-400-normal-D80tGT87.woff2",
+        "type": "font",
+        "bodyBytes": 34315,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-109-400-normal-ZEHPyOzB.woff2",
+        "type": "font",
+        "bodyBytes": 32233,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-101-400-normal-DYFU5ahq.woff2",
+        "type": "font",
+        "bodyBytes": 31227,
+        "headerBytes": 0
+      },
+      {
+        "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/DHTP-DQqEGX3n.png",
+        "type": "image",
+        "bodyBytes": 1304703,
+        "headerBytes": 0
+      }
+    ],
+    "note": "Cold browser context; bytes are transferred response bodies (compressed if server uses compression), not a mobile speed benchmark"
+  },
+  "url": "https://9010qwq.github.io/cuc-sbti-nature/",
+  "browserVersion": "152.0.4191.66",
+  "totalResources": [
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/",
+      "type": "document",
+      "bodyBytes": 767,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/style-fxx1K_iW.css",
+      "type": "stylesheet",
+      "bodyBytes": 37059,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/index-BrvSFqyR.js",
+      "type": "script",
+      "bodyBytes": 19438,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/BHSF-DglFaSTZ.png",
+      "type": "image",
+      "bodyBytes": 1281179,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/BOTP-DAGgnvG1.png",
+      "type": "image",
+      "bodyBytes": 1191010,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-90-400-normal-DRuAc-VY.woff2",
+      "type": "font",
+      "bodyBytes": 5529,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-117-400-normal-QPrBdlQO.woff2",
+      "type": "font",
+      "bodyBytes": 28193,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-115-400-normal-BQfWDt6M.woff2",
+      "type": "font",
+      "bodyBytes": 30131,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-111-400-normal-C5Xi9UGz.woff2",
+      "type": "font",
+      "bodyBytes": 33336,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-106-400-normal-DDMMORp2.woff2",
+      "type": "font",
+      "bodyBytes": 33417,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-113-400-normal-DZoqVzDv.woff2",
+      "type": "font",
+      "bodyBytes": 31158,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-latin-400-normal-C8q2FS1w.woff2",
+      "type": "font",
+      "bodyBytes": 13458,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-118-400-normal-CqQ_A8sl.woff2",
+      "type": "font",
+      "bodyBytes": 24872,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-119-400-normal-flOVnW3A.woff2",
+      "type": "font",
+      "bodyBytes": 41449,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-112-400-normal-F9zvXQVU.woff2",
+      "type": "font",
+      "bodyBytes": 30809,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-114-400-normal-CZUMxNv_.woff2",
+      "type": "font",
+      "bodyBytes": 31055,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-87-400-normal-BGelIZWt.woff2",
+      "type": "font",
+      "bodyBytes": 5547,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-116-400-normal-B9rv4EzF.woff2",
+      "type": "font",
+      "bodyBytes": 28272,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-105-400-normal-BiKizsW3.woff2",
+      "type": "font",
+      "bodyBytes": 32959,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-108-400-normal-D80tGT87.woff2",
+      "type": "font",
+      "bodyBytes": 34315,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-109-400-normal-ZEHPyOzB.woff2",
+      "type": "font",
+      "bodyBytes": 32233,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-101-400-normal-DYFU5ahq.woff2",
+      "type": "font",
+      "bodyBytes": 31227,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/DHTP-DQqEGX3n.png",
+      "type": "image",
+      "bodyBytes": 1304703,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-110-400-normal-D1IYcvpb.woff2",
+      "type": "font",
+      "bodyBytes": 33051,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-73-400-normal-tzRZHUkU.woff2",
+      "type": "font",
+      "bodyBytes": 21023,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-57-400-normal-0KJcqtwa.woff2",
+      "type": "font",
+      "bodyBytes": 29789,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-107-400-normal-DUS2YNa3.woff2",
+      "type": "font",
+      "bodyBytes": 32589,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-37-400-normal-CjshmOwp.woff2",
+      "type": "font",
+      "bodyBytes": 28532,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/noto-sans-sc-104-400-normal-DbzfdvQ5.woff2",
+      "type": "font",
+      "bodyBytes": 32729,
+      "headerBytes": 0
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/BHSF-DglFaSTZ.png",
+      "type": "image",
+      "bodyBytes": -672,
+      "headerBytes": 672
+    },
+    {
+      "url": "https://9010qwq.github.io/cuc-sbti-nature/assets/NAIWA-Dz6AW3w5.png",
+      "type": "image",
+      "bodyBytes": 1209405,
+      "headerBytes": 0
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-09-10T17:19:16.702Z"
+}
