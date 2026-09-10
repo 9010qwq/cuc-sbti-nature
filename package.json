@@ -1,0 +1,24 @@
+{
+  "name": "cuc-sbti-nature",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node prepare.mjs && vite --host 127.0.0.1 --configLoader native",
+    "build": "node prepare.mjs && tsc --noEmit && vite build --configLoader native && node pack.mjs",
+    "test": "node --experimental-strip-types tests/logic.test.ts",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-sc": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

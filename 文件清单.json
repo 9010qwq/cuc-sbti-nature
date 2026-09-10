@@ -1,0 +1,307 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 85,
+    "sha256": "e7547f14371cea3b076e141073b0ec9fbab247fab1ed06bbd36db3bb290162a2"
+  },
+  {
+    "path": "art-prompts/BHSF.txt",
+    "bytes": 1208,
+    "sha256": "14ad68934a4e9d96693b9b7188453941d70500a4af48b930addf1f6551e3a892"
+  },
+  {
+    "path": "art-prompts/BHSP.txt",
+    "bytes": 1140,
+    "sha256": "e6c2ac49a2c73355c0104dea2dacf18628b548e031dbcb06f9f5b4d17bec21eb"
+  },
+  {
+    "path": "art-prompts/BHTF.txt",
+    "bytes": 1123,
+    "sha256": "75e480e1bc70f463e294a5a3d45d4589c81b6b8db40ba4cc59e5f15ba87c56fb"
+  },
+  {
+    "path": "art-prompts/BHTP.txt",
+    "bytes": 1156,
+    "sha256": "f264e3258d2c69d83660a412bc78766dea289ce3ad57ba6e8b2e6385014b59ca"
+  },
+  {
+    "path": "art-prompts/BOSF.txt",
+    "bytes": 1154,
+    "sha256": "5e9f9acb05cdf7adf8b383ec676fdea9a110b5c6d4dbc4af5fb8cada5049e9be"
+  },
+  {
+    "path": "art-prompts/BOSP.txt",
+    "bytes": 1182,
+    "sha256": "fa53301d9f40b342862eb73186c9d4c0ea8a568c92a590752f6cf3c76c0e5311"
+  },
+  {
+    "path": "art-prompts/BOTF.txt",
+    "bytes": 1327,
+    "sha256": "44639106bd0403f7ce40198921182913b24ec598485d29d4a3ca7912711cd03d"
+  },
+  {
+    "path": "art-prompts/BOTP.txt",
+    "bytes": 1199,
+    "sha256": "d482973f301a45088dfb24f0dc873abec3614d589785dd0406ae55bda63724f7"
+  },
+  {
+    "path": "art-prompts/DHSF.txt",
+    "bytes": 1414,
+    "sha256": "892ff63c9c56bb50a716da236237a80320fcbc46f86420f04608645fb42b948d"
+  },
+  {
+    "path": "art-prompts/DHSP.txt",
+    "bytes": 1194,
+    "sha256": "250b39fd09abaf658e80681de33d384c21dc6c498cdf9bd9465cf78464240d6d"
+  },
+  {
+    "path": "art-prompts/DHTF.txt",
+    "bytes": 1173,
+    "sha256": "9d558ae0215adfb07ac66ff211c7e1e5bff5efd1c4410c66dc68734201633427"
+  },
+  {
+    "path": "art-prompts/DHTP.txt",
+    "bytes": 1211,
+    "sha256": "4f40dd1451d30f4684f66f021d7833d9f20786cfa21b326f09f442605802f714"
+  },
+  {
+    "path": "art-prompts/DOSF.txt",
+    "bytes": 1172,
+    "sha256": "e468665f612a3ec64d918035fafaeb3773c246490e5fb30f060b29aac053c047"
+  },
+  {
+    "path": "art-prompts/DOSP.txt",
+    "bytes": 1181,
+    "sha256": "bbb65a3532e5eda3a8c723d63667b2e8b3588595c619b8e7603670ae281764c6"
+  },
+  {
+    "path": "art-prompts/DOTF.txt",
+    "bytes": 1182,
+    "sha256": "a5840f797742b040a53a02a37714b75daa6a1be63fb27740d7b7b99a69dfdcf3"
+  },
+  {
+    "path": "art-prompts/DOTP.txt",
+    "bytes": 1185,
+    "sha256": "0f67612ac112d937f440dd75afea24a9f7cb8b4095eb46ae87896b0859eddd72"
+  },
+  {
+    "path": "art-prompts/NAIWA.txt",
+    "bytes": 1576,
+    "sha256": "b7e3fa5aa2438f16ae8b137a76bbb889b538f2dd7c51ce04bd6215a67632377f"
+  },
+  {
+    "path": "assets/BHSF.png",
+    "bytes": 1280259,
+    "sha256": "68a09f6929dc8cf3f7370c0bdd826cc326aca0b3d87a9c4b7466a09b0fc77916"
+  },
+  {
+    "path": "assets/BHSP.png",
+    "bytes": 1336389,
+    "sha256": "705ed60c3f231cf21b21612c4d4e474eb1d98007a63051209df2169b42aa7389"
+  },
+  {
+    "path": "assets/BHTF.png",
+    "bytes": 1281490,
+    "sha256": "3ccbf6e5e50dfde872b341d9ba3b848e33dddb460c2495e9853b1448fe8cebeb"
+  },
+  {
+    "path": "assets/BHTP.png",
+    "bytes": 1197725,
+    "sha256": "ff70f2c6267a86e86a6439cd3251f8666c741ababa6e62e647c16274702483d9"
+  },
+  {
+    "path": "assets/BOSF.png",
+    "bytes": 1338561,
+    "sha256": "91583a49aefc477be2dc05ebc600ab3660b4b90cc4e55dd16981b3280e0b74c8"
+  },
+  {
+    "path": "assets/BOSP.png",
+    "bytes": 1290436,
+    "sha256": "8d3591bf80bf62d7f5eea5d993b199e291e8b07515ba4c39069d0a43b6a5dd68"
+  },
+  {
+    "path": "assets/BOTF.png",
+    "bytes": 1221731,
+    "sha256": "c7ef0c0a9db48f97bc4f6eee06229e78f95432b218e99eca41705a8f2e5e957a"
+  },
+  {
+    "path": "assets/BOTP.png",
+    "bytes": 1190030,
+    "sha256": "7180231f6b8350a72f794d65e84a432bb97611ba895aeafade570e38aa281c87"
+  },
+  {
+    "path": "assets/DHSF.png",
+    "bytes": 1178825,
+    "sha256": "ef631b56fbe378416b81dbf3dd456436a2848faa09aa267ed277945d3fc39ca8"
+  },
+  {
+    "path": "assets/DHSP.png",
+    "bytes": 1272539,
+    "sha256": "96c50a8d54fd4bab94a3cfd94949b6e4ede2dbd131dc29224d05f2d669b99d91"
+  },
+  {
+    "path": "assets/DHTF.png",
+    "bytes": 1343249,
+    "sha256": "46d139d3befd62bedf009de7ee6e432943028b2a9493821185fc83a0b26fc84f"
+  },
+  {
+    "path": "assets/DHTP.png",
+    "bytes": 1303837,
+    "sha256": "6b498d63fe67a328981b4d13b488d023a6123525ed4da56100829364ddd8e922"
+  },
+  {
+    "path": "assets/DOSF.png",
+    "bytes": 1180140,
+    "sha256": "da87bdcd37d0efdbfb6a615adf92cc5b1a203a352b87882e9f20a95f7e72845e"
+  },
+  {
+    "path": "assets/DOSP.png",
+    "bytes": 1529104,
+    "sha256": "9617d6c4907a5a2864bde5914fdeb5ffebb7570b479217354c138bf61abbf0f1"
+  },
+  {
+    "path": "assets/DOTF.png",
+    "bytes": 1330607,
+    "sha256": "8d9e40dc1828d459173e14d3648f092e834ac2ffda51ec27e6bafb9f00167ec9"
+  },
+  {
+    "path": "assets/DOTP.png",
+    "bytes": 1263671,
+    "sha256": "2107d367f867ee6cf98c3e3ec4096b7f73c13df8d1804082fd2a300810b00194"
+  },
+  {
+    "path": "assets/NAIWA.png",
+    "bytes": 1208536,
+    "sha256": "f4af627fa7a1c41795d5dfe334dfcab28bb957ed5181d80899525105245ca41e"
+  },
+  {
+    "path": "ASSET_NOTICE.md",
+    "bytes": 1186,
+    "sha256": "d26d3633149581509f2399a0a81b70e4af6647a857d4180a35c57af5b171dbd2"
+  },
+  {
+    "path": "FONT_LICENSE.txt",
+    "bytes": 4314,
+    "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3"
+  },
+  {
+    "path": "index.html",
+    "bytes": 346,
+    "sha256": "6c7a3746de81b86aece8087263b05c06f822aeccd78868449fbbd8abaa68ffdb"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 1318,
+    "sha256": "2d9e3ab3dc68cdff5d3682ae25fdea7fbe1b46dac45970b3c22dec636a9fff1d"
+  },
+  {
+    "path": "pack.mjs",
+    "bytes": 700,
+    "sha256": "c811b05007252771838a990d88018a43c9f615be9d995d5cd0da42b429e79219"
+  },
+  {
+    "path": "package-lock.json",
+    "bytes": 38445,
+    "sha256": "86edb4abd742660139e5264fdbcdb748b10740f44d8c19899e1e33846816b3dc"
+  },
+  {
+    "path": "package.json",
+    "bytes": 641,
+    "sha256": "2bd35d13b86f2e2970971b6827655317c4ef3b37dbfe96835fbd3f35e947d407"
+  },
+  {
+    "path": "prepare.mjs",
+    "bytes": 1035,
+    "sha256": "72445331a7e16144767b1e36106799d04816e901d3dafcda1bb06f15db69cb73"
+  },
+  {
+    "path": "README.md",
+    "bytes": 5329,
+    "sha256": "5ae9bf8d170e3bf264d3cd5a55dd901b3e12ff084d4e4f01744f394bfb10d463"
+  },
+  {
+    "path": "src/card.ts",
+    "bytes": 4380,
+    "sha256": "006b9ef0c1d72a0f51835fc1b22e69e318d8924d194325596f4b2e0b1ebc575a"
+  },
+  {
+    "path": "src/data.ts",
+    "bytes": 17644,
+    "sha256": "994b2b3a46c436c99be671e99e9bb56d0448b83d328eaa3d110d9485ac722b62"
+  },
+  {
+    "path": "src/logic.ts",
+    "bytes": 3922,
+    "sha256": "8495998da620eb06f80eedb9ced8ccbd8f7c945e153a835082c567a061053f76"
+  },
+  {
+    "path": "src/main.ts",
+    "bytes": 29500,
+    "sha256": "7bd8dc4d03bfb85c77d857e6faffedf2e599711637473eb5641a422982a61969"
+  },
+  {
+    "path": "src/style.css",
+    "bytes": 19948,
+    "sha256": "6545a6eb2cc562f542d812558f8cc05e57295b92792c30b439267daea95a9277"
+  },
+  {
+    "path": "tests/browser.cjs",
+    "bytes": 12131,
+    "sha256": "56ac59e1a174d387ec635a70bd5e2095d56f5795e8b44d843225d15c035666f8"
+  },
+  {
+    "path": "tests/logic.test.ts",
+    "bytes": 2660,
+    "sha256": "ee9534b4c4b008adebd8d79a3579955fe1fe44c2b3997714a33a5a0be1234f32"
+  },
+  {
+    "path": "tests/package-smoke.cjs",
+    "bytes": 1581,
+    "sha256": "1c3358752666babff3cf94079a720ecaea6eb6c03dbd23677d51fa3f931af8e7"
+  },
+  {
+    "path": "tsconfig.json",
+    "bytes": 295,
+    "sha256": "f941e54050d483f2fd6d689e769f2052ada267213f2d1f1f18490e6b837d9bfe"
+  },
+  {
+    "path": "vite.config.ts",
+    "bytes": 308,
+    "sha256": "78f1c0dd8da959fd7bebd29140016b223d6f5ef40d614d46f6cc115c9f339771"
+  },
+  {
+    "path": "预览/16型结果卡总览.png",
+    "bytes": 1303005,
+    "sha256": "1921efb179ce0438009b66861fd4548e69bba49cb58fb433b63b20b2d92f42aa"
+  },
+  {
+    "path": "预览/手机截图模式.png",
+    "bytes": 99543,
+    "sha256": "22649ab56d6402f934dfbf7dcadb8a87793f0ea354442f48e6093280eb8aa933"
+  },
+  {
+    "path": "预览/手机首页.png",
+    "bytes": 178730,
+    "sha256": "6a70bbac5d212f55d541310941fc89f3301e1692f7b60a13544e069237b93a1d"
+  },
+  {
+    "path": "验证数据/browser-results.json",
+    "bytes": 2965,
+    "sha256": "2443e373b51f8fbd863e83c2f88f4f52da4072f09130542226e02085fbd2c6ee"
+  },
+  {
+    "path": "验证数据/dependency-audit.json",
+    "bytes": 383,
+    "sha256": "c519057beb84af6abd4bbd5989056772cd3439e51892702538ceaf5a88897d32"
+  },
+  {
+    "path": "验证数据/解压运行检查.json",
+    "bytes": 150,
+    "sha256": "7eec5b2622fd3455bb19ad427e0a04ceafb9ca01fefccb8a6961fa6cb6f50113"
+  },
+  {
+    "path": "验证记录.md",
+    "bytes": 1908,
+    "sha256": "d7275e3e953d3ddaeff56220b3fb53ba16174fff9eab2a781f6647cd9eea15f1"
+  }
+]
