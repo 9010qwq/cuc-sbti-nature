@@ -1,0 +1,32 @@
+
+> cuc-sbti-nature@2.0.0 test
+> node --experimental-strip-types tests/logic.test.ts
+
+PASS reachable BHTF
+PASS reachable BHTP
+PASS reachable BHSF
+PASS reachable BHSP
+PASS reachable BOTF
+PASS reachable BOTP
+PASS reachable BOSF
+PASS reachable BOSP
+PASS reachable DHTF
+PASS reachable DHTP
+PASS reachable DHSF
+PASS reachable DHSP
+PASS reachable DOTF
+PASS reachable DOTP
+PASS reachable DOSF
+PASS reachable DOSP
+PASS core questions keep five independent questions per axis
+PASS 2.0 keeps raccoon and replaces magnet with rat king
+PASS four interest questions retain six fields outside core scoring
+PASS zero requires tie rather than random type
+PASS back-edit replaces prior score, not accumulated
+PASS explicit zero reachable in 5 answers
+PASS interest ties require user, no arbitrary pick
+PASS configuration validation rejects malformed data
+PASS configuration v2 round-trips and rejects v1 without mutating content
+PASS name truncation and empty name
+PASS reserved imported IDs cannot bypass answer storage or completion
+Total 27 meaningful logic checks passed.

@@ -6,6 +6,7 @@ export interface CardData {
   event: string;
   tags: number[];
   frog: boolean;
+  larva?: boolean;
   demo: boolean;
   foodie: boolean;
 }
@@ -67,11 +68,12 @@ export async function drawCard(canvas: HTMLCanvasElement, data: CardData) {
   await document.fonts.load(
     '400 32px "Noto Sans SC"',
     JSON.stringify(data) +
-      "欢迎关注微信公众号 CUC自然科学社 探索偏好 野生兴趣档案 奶蛙目击者",
+      "欢迎关注微信公众号 CUC自然科学社 探索偏好 野生兴趣档案 奶蛙目击者 快乐搭子 同一颗星球 各有各的好奇心",
   );
   await document.fonts.ready;
   const im = await loadImage(data.profile.code);
   const frog = data.frog ? await loadImage("NAIWA") : null;
+  const larva = data.larva ? await loadImage("LARVA") : null;
   canvas.width = 1080;
   canvas.height = 1440;
   const ctx = canvas.getContext("2d");
@@ -83,15 +85,20 @@ export async function drawCard(canvas: HTMLCanvasElement, data: CardData) {
   ctx.lineWidth = 2;
   ctx.strokeRect(28, 28, 1024, 1384);
   ctx.fillStyle = "#253d32";
-  text(ctx, "SBTI / 自然界原形", 60, 85, 36, 700, 700);
+  ctx.fillStyle = "#527943";
+  text(ctx, "S", 60, 85, 40, 40, 700);
+  ctx.fillStyle = "#253d32";
+  text(ctx, "BTI / 自然界原形", 90, 85, 36, 670, 700);
   text(ctx, data.demo ? "图鉴演示" : "野生兴趣档案", 790, 85, 26, 230);
   ctx.fillStyle = "#697761";
   text(ctx, data.event, 60, 127, 22, 950);
   ctx.fillStyle = p.color;
   ctx.fillRect(60, 145, 960, 3);
   ctx.fillStyle = "#25372e";
-  text(ctx, p.en, 60, 233, 94, 900, 700);
-  text(ctx, p.name, 60, 303, 76, 960, 700);
+  text(ctx, p.name, 60, 245, 88, 960, 700);
+  text(ctx, p.en, 60, 316, p.en === "EAT" ? 68 : 54, 680, 700);
+  ctx.fillStyle = "#617550";
+  text(ctx, p.code, 785, 312, 60, 235, 700);
   ctx.fillStyle = "#5d665a";
   text(
     ctx,
@@ -102,6 +109,28 @@ export async function drawCard(canvas: HTMLCanvasElement, data: CardData) {
     950,
   );
   ctx.drawImage(im, 200, 370, 680, 680);
+  const sticker = (
+    image: HTMLImageElement,
+    label: string,
+    x: number,
+    angle: number,
+  ) => {
+    ctx.save();
+    ctx.translate(x, 792);
+    ctx.rotate(angle);
+    ctx.fillStyle = "#fbf6e8";
+    ctx.fillRect(-7, -7, 164, 205);
+    ctx.strokeStyle = "#b8bba5";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(-7, -7, 164, 205);
+    ctx.drawImage(image, 0, 0, 150, 150);
+    ctx.fillStyle = "#496038";
+    ctx.textAlign = "center";
+    text(ctx, label, 75, 180, 25, 150, 700);
+    ctx.restore();
+  };
+  if (frog) sticker(frog, "奶蛙目击者", 72, -0.05);
+  if (larva) sticker(larva, "快乐搭子", 852, 0.05);
   ctx.fillStyle = "#25372e";
   lines(ctx, p.quote, 60, 1103, 960, 42);
   ctx.fillStyle = p.color;
@@ -117,20 +146,7 @@ export async function drawCard(canvas: HTMLCanvasElement, data: CardData) {
     x += w + 12;
   }
   ctx.fillStyle = "#677060";
-  text(ctx, `探索偏好 · ${p.code}  /  趣味测评`, 60, 1290, 27, 680);
-  if (frog) {
-    ctx.drawImage(frog, 850, 1170, 100, 100);
-    ctx.save();
-    ctx.translate(890, 1290);
-    ctx.rotate(-0.04);
-    ctx.strokeStyle = "#5f7750";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(-90, -25, 180, 36);
-    ctx.fillStyle = "#496038";
-    ctx.textAlign = "center";
-    text(ctx, "奶蛙目击者", 0, 0, 24, 162, 700);
-    ctx.restore();
-  }
+  text(ctx, "同一颗星球 各有各的好奇心", 60, 1290, 27, 960);
   ctx.strokeStyle = "#bcc0af";
   ctx.beginPath();
   ctx.moveTo(60, 1312);

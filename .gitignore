@@ -1,6 +1,7 @@
 node_modules/
 dist/
 dist-web/
+generated/
 test-results/
 src/assets.ts
 src/font.css

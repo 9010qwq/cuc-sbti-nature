@@ -50,7 +50,10 @@ export function validateContent(input: unknown): Content {
   const c = input as Content;
   const str = (v: unknown, max: number) =>
     typeof v === "string" && v.trim().length > 0 && v.length <= max;
-  if (c.version !== 1) throw Error("配置版本需为1。");
+  if (c.version !== 2)
+    throw Error(
+      "请使用2.0版导出的配置（version: 2）。1.0配置含旧角色，不能直接导入；当前内容未更改。",
+    );
   if (!str(c.event, 40)) throw Error("活动署名需为1—40字。");
   if (c.welcome !== WELCOME) throw Error("公众号关注文案必须完整保留。");
   if (!Array.isArray(c.questions) || c.questions.length !== 20)
@@ -59,6 +62,8 @@ export function validateContent(input: unknown): Content {
   const counts = [0, 0, 0, 0];
   for (const q of c.questions) {
     if (!str(q.id, 30) || ids.has(q.id)) throw Error("题目ID为空或重复。");
+    if (q.id in Object.prototype || q.id === "prototype")
+      throw Error("题目ID不能使用系统保留名称，请换一个ID。");
     ids.add(q.id);
     if (!Number.isInteger(q.axis) || q.axis < 0 || q.axis > 3)
       throw Error("题目维度只能为0—3。");

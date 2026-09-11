@@ -106,10 +106,34 @@ a {
   line-height: 1;
   letter-spacing: -2px;
 }
-.brand b span {
-  font-size: 22px;
-  color: #74885d;
-  margin-left: 4px;
+.brand-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 7px;
+}
+.brand .science-letter {
+  color: #58814b;
+  position: relative;
+  margin-right: 5px;
+}
+.science-letter i {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  right: -4px;
+  top: 0;
+  border-radius: 9px 0 9px 0;
+  background: #8aa763;
+  transform: rotate(25deg);
+}
+.science-caption {
+  font:
+    10px Arial,
+    sans-serif;
+  letter-spacing: 0.4px;
+  color: #58814b;
+  margin-bottom: 3px;
 }
 .brand small {
   font-size: 14px;
@@ -129,6 +153,12 @@ a {
 }
 .navbtn:hover {
   background: #e7e7d8;
+}
+.navbtn.active {
+  background: #dfe7d1;
+  color: #3e6039;
+  font-weight: 700;
+  box-shadow: inset 0 -2px #6f8858;
 }
 main {
   max-width: 1200px;
@@ -400,9 +430,8 @@ input:not([type="file"]) {
   transform: translateY(5px);
 }
 .intro-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px 24px;
   padding: 22px 0;
   margin-top: 35px;
@@ -410,6 +439,11 @@ input:not([type="file"]) {
   border-bottom: 1px solid var(--line);
   font-size: 13px;
   color: #5b7053;
+  text-align: center;
+}
+.intro-strip span {
+  min-width: 0;
+  white-space: nowrap;
 }
 .home-note {
   max-width: 650px;
@@ -423,6 +457,10 @@ input:not([type="file"]) {
   margin-top: 12px;
   font-size: 14px;
   color: #66705e;
+}
+.home-note p span {
+  display: block;
+  line-height: 1.95;
 }
 .clue-note {
   color: #6b7445;
@@ -597,7 +635,11 @@ input:not([type="file"]) {
   margin: 16px 0 30px;
 }
 .profile-body h2 {
-  font-size: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7b806e;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
 }
 .profile-body p {
   font-size: 15px;
@@ -606,15 +648,78 @@ input:not([type="file"]) {
 .result-right {
   padding-top: 52px;
 }
+.profile-code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 8px 0 18px;
+  color: #6c7d57;
+}
+.profile-code b {
+  font:
+    700 20px Arial,
+    sans-serif;
+  letter-spacing: 2px;
+}
+.profile-code span {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.profile-heading h1,
+.profile-heading h2 {
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+.profile-english {
+  display: block;
+  font:
+    700 22px Arial,
+    sans-serif;
+  color: #849468;
+  letter-spacing: 2px;
+}
+.profile-heading blockquote {
+  margin: 22px 0 28px;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.65;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
 .note-pair {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
   margin-top: 26px;
+  align-items: start;
 }
 .note-pair section {
-  border-top: 1px solid var(--line);
-  padding-top: 18px;
+  position: relative;
+  border: 1px solid #ccd0b6;
+  border-radius: 2px 14px 3px 9px;
+  padding: 24px 18px 8px;
+  background: #eef0df;
+  transform: rotate(-1deg);
+}
+.note-pair section::before {
+  content: "";
+  position: absolute;
+  width: 55px;
+  height: 14px;
+  background: #d3d8b7b0;
+  left: 25px;
+  top: -7px;
+  transform: rotate(-4deg);
+}
+.note-pair section:nth-child(2) {
+  background: #eee7d7;
+  border-color: #d4cbb7;
+  transform: rotate(1deg);
+  margin-top: 34px;
 }
 .note-pair p {
   font-size: 14px;
@@ -718,6 +823,66 @@ input:not([type="file"]) {
   flex-wrap: wrap;
   gap: 10px;
 }
+.snack-result {
+  margin: 28px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.snack-clue,
+.snack-discovered {
+  font-size: 12px;
+  color: #8b8168;
+}
+.snack-button {
+  min-height: 44px;
+  border: 1px dashed #b5a981;
+  border-radius: 30px;
+  padding: 8px 14px;
+  background: #eee7d5;
+  font-size: 13px;
+}
+.snack-modal,
+.larva-modal {
+  text-align: center;
+}
+.snack-modal .primary {
+  display: flex;
+  margin: 20px auto 4px;
+}
+.snack-illustration {
+  display: block;
+  font-size: 80px;
+  margin: 10px 0 16px;
+}
+.larva-art {
+  max-height: 38vh;
+  max-height: 38dvh;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  margin: 0 auto 15px;
+}
+.larva-modal p {
+  font-size: 14px;
+}
+.atlas-sheet {
+  margin: 28px 0 0;
+  background: #fffaf0;
+  border: 1px solid var(--line);
+  padding: 8px;
+}
+.atlas-art {
+  width: 100%;
+  height: auto;
+}
+.atlas-sheet figcaption {
+  text-align: center;
+  font-size: 12px;
+  color: #758365;
+  margin: 10px 0 5px;
+}
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -732,6 +897,15 @@ input:not([type="file"]) {
   text-align: left;
   overflow: hidden;
   transition: transform 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  min-height: 82px;
+}
+.specimen .specimen-number {
+  padding: 12px 0 0 5px;
+  font: 12px Arial;
+  color: #9ba586;
 }
 .specimen:hover {
   transform: translateY(-4px);
@@ -787,6 +961,7 @@ input:not([type="file"]) {
   font-size: 23px;
   text-align: center;
   margin: 20px 0 35px;
+  font-weight: 700;
 }
 .reading h2 {
   margin-top: 34px;
@@ -1053,8 +1228,15 @@ input:not([type="file"]) {
   .brand b {
     font-size: 28px;
   }
-  .brand b span {
-    font-size: 17px;
+  .science-letter i {
+    width: 6px;
+    height: 11px;
+  }
+  .science-caption {
+    font-size: 9px;
+  }
+  .brand-mark {
+    gap: 6px;
   }
   .navbtn {
     padding: 8px 9px;
@@ -1138,7 +1320,26 @@ input:not([type="file"]) {
   }
   .note-pair {
     grid-template-columns: 1fr;
-    gap: 5px;
+    gap: 20px;
+  }
+  .note-pair section:nth-child(2) {
+    margin-top: 0;
+    margin-left: 14px;
+    transform: none;
+  }
+  .note-pair section:first-child {
+    margin-right: 14px;
+    transform: none;
+  }
+  .profile-heading h1,
+  .profile-heading h2 {
+    font-size: 34px;
+  }
+  .profile-heading blockquote {
+    font-size: 22px;
+  }
+  .profile-code {
+    gap: 2px 10px;
   }
   .result-title h1 {
     font-size: 25px;
@@ -1148,12 +1349,17 @@ input:not([type="file"]) {
   }
   .specimen > div {
     padding: 8px 4px;
+    min-width: 0;
   }
   .specimen b {
     font-size: 14px;
   }
   .specimen span {
     font-size: 10px;
+  }
+  .specimen .specimen-number {
+    font-size: 10px;
+    padding-left: 2px;
   }
   .demo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -45,7 +45,7 @@ const write = (k: string, v: string) => {
 };
 let content: Content = structuredClone(defaultContent);
 try {
-  const saved = read("sbti-content-v1");
+  const saved = read("sbti-content-v2");
   if (saved) content = validateContent(JSON.parse(saved));
 } catch {
   /* A damaged saved configuration must not prevent startup. */
@@ -78,7 +78,9 @@ let page: Page = "home",
   seen2 = false,
   observed = false,
   frog = false,
+  larva = false,
   demo = false,
+  completed = false,
   resultCode = "",
   galleryProfile = "",
   cardReady = false,
@@ -135,7 +137,9 @@ function reset() {
   seen2 = false;
   observed = false;
   frog = false;
+  larva = false;
   demo = false;
+  completed = false;
   resultCode = "";
   index = 0;
   galleryProfile = "";
@@ -166,6 +170,7 @@ function finish() {
     go("tie");
     return;
   }
+  completed = true;
   go("reveal");
   revealTimer = window.setTimeout(
     () => {
@@ -178,19 +183,29 @@ function box(stage: number) {
   return `<button type="button" class="mystery-box ${stage === 2 ? "wobble" : ""} ${(stage === 1 && seen1) || (stage === 2 && seen2) ? "found" : ""}" data-action="clue${stage}" aria-label="${stage === 1 ? "查看箱底露出的脚" : "查看正在移动的箱子"}"><span class="toes">● &nbsp; ●</span><span class="box-top"></span><span class="box-front">↗<small>望远镜 / 小心轻放</small></span></button>`;
 }
 function header() {
-  return `<header class="topbar"><button class="brand" data-action="home" aria-label="返回首页"><b>SBTI<span>✦</span></b><small>自然界原形</small></button><nav>${btn("gallery", "图鉴", "navbtn")}${btn("help", "说明", "navbtn")}${btn("sound", sound ? "声音开" : "声音关", "navbtn", `aria-pressed="${sound}"`)}</nav></header>`;
+  const canBrowse = page !== "home" && completed;
+  return `<header class="topbar"><button class="brand" data-action="home" aria-label="S Science BTI 自然界原形，返回首页"><span class="brand-mark"><b><span class="science-letter">S<i aria-hidden="true"></i></span>BTI</b><span class="science-caption">Science</span></span><small>自然界原形</small></button><nav aria-label="页面导航">${canBrowse ? btn("gallery", "图鉴", `navbtn ${page === "gallery" ? "active" : ""}`, page === "gallery" ? 'aria-current="page"' : "") : ""}${btn("help", "说明", `navbtn ${page === "help" ? "active" : ""}`, page === "help" ? 'aria-current="page"' : "")}</nav></header>`;
 }
 function footer() {
-  return `<footer><div class="follow">欢迎关注微信公众号 <strong>CUC自然科学社</strong></div><p>好奇心没有标准答案。原创娱乐测评，不检测智商。</p><div>${btn("reduce", reduce ? "动态效果：少" : "动态效果：标准", "textbtn", `aria-pressed="${reduce}"`)}${btn("staff", "工作人员", "textbtn")}</div></footer>`;
+  return `<footer><div class="follow">欢迎关注微信公众号 <strong>CUC自然科学社</strong></div><p>好奇心没有标准答案</p><div>${btn("sound", sound ? "声音开" : "声音关", "textbtn", `aria-pressed="${sound}"`)}${btn("reduce", reduce ? "动态效果：少" : "动态效果：标准", "textbtn", `aria-pressed="${reduce}"`)}${btn("staff", "工作人员", "textbtn")}</div></footer>`;
 }
 function home() {
-  return `<section class="hero"><div class="hero-copy"><div class="eyebrow">FIELD NOTES · ${esc(content.event)}</div><h1>测测你的<br><em>自然界原形</em><span class="tiny-star">✦</span></h1><p class="lede">宇宙很大，你是哪一款？<br>从星空到石头，从看鸟到狂吃。<br>来认领一只属于你的野生兴趣人格。</p><div class="hero-meta"><span>S = Science</span><span>16 种原形</span><span>约 4—6 分钟</span></div><label class="name-label" for="nickname">给观察记录留个名字 <small>选填，最多12字</small></label><input id="nickname" maxlength="24" autocomplete="off" placeholder="匿名自然人也欢迎" value="${esc(name)}"><button class="primary start" data-action="start">开始鉴定 <span>↗</span></button><p class="privacy">不用登录，回答只留在本次页面里。</p></div><div class="hero-art"><div class="orbit"></div>${img("BHSF", "hero-eat", "拿着勺子的黑洞")}${img("DHTP", "hero-brick", "背着物资的砖头")}${img("BOTP", "hero-dove", "拿签到板的朱颈斑鸠")}<span class="handnote">一起去看看<br>世界还有什么。</span><div class="hero-box">${box(1)}</div><span class="specimen-stamp">野生兴趣<br>正在出没</span></div></section><section class="intro-strip"><span>✦ 仰望星空</span><span>↗ 追着鸟看</span><span>♧ 植物朋友</span><span>◎ 动物观察</span><span>◇ 捡石头的</span><span>◒ 食趣研究</span></section>${seen1 ? '<p class="clue-note">目击记录①：望远镜似乎长脚了。先记着。</p>' : ""}<section class="home-note"><b>你可以是黑洞，也可以是一块砖。</b><p>20个生活小场景 + 4个兴趣小问题。选更像平时的自己，不用选“看起来更厉害”的答案。</p></section>`;
+  return `<section class="hero"><div class="hero-copy"><div class="eyebrow">FIELD NOTES · ${esc(content.event)}</div><h1>测测你的<br><em>自然界原形</em><span class="tiny-star">✦</span></h1><p class="lede">宇宙很大，你是哪一款？<br>从星空到石头，从看鸟到狂吃。<br>来认领一只属于你的自然界原形。</p><div class="hero-meta"><span>S = Science</span><span>16 种原形</span><span>约 4—6 分钟</span></div><label class="name-label" for="nickname">给观察记录留个名字 <small>选填，最多12字</small></label><input id="nickname" maxlength="24" autocomplete="off" placeholder="匿名自然人也欢迎" value="${esc(name)}"><button class="primary start" data-action="start">看看我的原形 <span>↗</span></button><p class="privacy">不用登录，回答只留在本次页面里。</p></div><div class="hero-art"><div class="orbit"></div>${img("BHSF", "hero-eat", "拿着勺子的黑洞")}${img("DHTP", "hero-brick", "背着物资的砖头")}${img("BOTP", "hero-dove", "拿签到板的朱颈斑鸠")}<span class="handnote">一起去看看<br>世界还有什么。</span><div class="hero-box">${box(1)}</div><span class="specimen-stamp">野生兴趣<br>正在出没</span></div></section><section class="intro-strip"><span>✦ 仰望星空</span><span>↗ 追着鸟看</span><span>♧ 植物朋友</span><span>◎ 动物观察</span><span>◇ 捡石头的</span><span>◒ 食趣研究</span></section>${seen1 ? '<p class="clue-note">目击记录①：望远镜似乎长脚了。先记着。</p>' : ""}<section class="home-note"><b>你可以是黑洞，也可以是一块砖。</b><p><span>20个生活小场景 + 4个兴趣小问题</span><span>选更像平时的自己</span><span>不用选看起来更厉害的答案</span></p></section>`;
 }
 function quiz() {
   const core = index < 20;
   const q = core ? content.questions[index] : interestQuestions[index - 20];
   const val = core ? answers[content.questions[index].id] : ia[index - 20];
-  return `<section class="quiz-shell"><div class="question-meta"><span>${core ? "野外观察记录" : "兴趣加注 · 不影响主类型"}</span><b>${String(index + 1).padStart(2, "0")} / 24</b></div><div class="progress" role="progressbar" aria-valuenow="${index + 1}" aria-valuemin="0" aria-valuemax="24" aria-label="答题进度"><i style="width:${((index + 1) / 24) * 100}%"></i></div><div class="q-heading"><span class="eyebrow">${core ? ["注意力正在漫游", "今天怎样接近自然", "同行的距离", "探索的步调"][content.questions[index].axis] : "哪一种好奇心在发光？"}</span><h1 tabindex="-1">${esc(q.title)}</h1></div><div class="options" role="group" aria-label="请选择更像你的选项">${q.options.map((o, i) => `<button class="option ${val === i ? "selected" : ""}" data-answer="${i}" aria-pressed="${val === i}"><span class="option-letter">${String.fromCharCode(65 + i)}</span><span>${esc(o)}</span><span class="check">${val === i ? "✓" : ""}</span></button>`).join("")}</div><div class="quiz-actions">${btn("back", "← 上一题", "secondary", index === 0 ? "disabled" : "")}${btn("next", index === 23 ? "生成我的原形 ↗" : "下一题 →", "primary", val === undefined ? "disabled" : "")}</div><p class="quiet">${core ? "没有标准答案。可以返回修改，分数会重新计算。" : "兴趣标签只影响报告里的兴趣描述。"}${index === 21 ? "<br>野外发现不入口；这里的“尝一口”只是脑内弹幕。" : ""}</p></section>`;
+  const orders = [
+    [1, 3, 0, 2],
+    [2, 0, 3, 1],
+    [3, 2, 1, 0],
+    [0, 1, 2, 3],
+  ];
+  const displayOrder = core
+    ? orders[(Math.floor(index / 4) + index) % orders.length]
+    : q.options.map((_, i) => i);
+  return `<section class="quiz-shell"><div class="question-meta"><span>${core ? "野外观察记录" : "兴趣加注 · 不影响主类型"}</span><b>${String(index + 1).padStart(2, "0")} / 24</b></div><div class="progress" role="progressbar" aria-valuenow="${index + 1}" aria-valuemin="0" aria-valuemax="24" aria-label="答题进度"><i style="width:${((index + 1) / 24) * 100}%"></i></div><div class="q-heading"><span class="eyebrow">${core ? ["注意力正在漫游", "今天怎样接近自然", "同行的距离", "探索的步调"][content.questions[index].axis] : "哪一种好奇心在发光？"}</span><h1 tabindex="-1">${esc(q.title)}</h1></div><div class="options" role="group" aria-label="请选择更像你的选项">${displayOrder.map((i, position) => `<button class="option ${val === i ? "selected" : ""}" data-answer="${i}" aria-pressed="${val === i}"><span class="option-letter">${String.fromCharCode(65 + position)}</span><span>${esc(q.options[i])}</span><span class="check">${val === i ? "✓" : ""}</span></button>`).join("")}</div><div class="quiz-actions">${btn("back", "← 上一题", "secondary", index === 0 ? "disabled" : "")}${btn("next", index === 23 ? "生成我的原形 ↗" : "下一题 →", "primary", val === undefined ? "disabled" : "")}</div><p class="quiet">${core ? "没有标准答案。可以返回修改，分数会重新计算。" : "兴趣标签只影响报告里的兴趣描述。"}${index === 21 ? "<br>野外发现不入口；这里的“尝一口”只是脑内弹幕。" : ""}</p></section>`;
 }
 function observe() {
   return `<section class="interlude"><div class="eyebrow">路边观察 · 不计分</div><h1>等一下。<br>箱子刚刚是不是动了？</h1><p>部长在前面清点人数，物资却好像多了一位乘客。</p>${box(2)}<p class="clue-note">${seen2 ? "目击记录②：它可能不是望远镜。" : "仔细看看，也可以直接继续活动。"}</p>${btn("continue", "继续观察之旅 →", "primary")}</section>`;
@@ -208,13 +223,17 @@ function tagsPage() {
 function reveal() {
   return `<section class="interlude reveal"><div class="scan-ring">✦</div><span class="eyebrow">正在整理野生观察记录</span><h1>你的原形<br>准备登场。</h1><p>部长正在盖章，请稍候。</p>${btn("skip", "跳过动画", "secondary")}</section>`;
 }
+function profileHeading(p: Profile, primary = false) {
+  const tag = primary ? "h1" : "h2";
+  return `<div class="profile-heading"><div class="profile-code"><b>${p.code}</b><span>${axes.map((a, i) => (p.code[i] === a.letters[0] ? a.a : a.b)).join(" · ")}</span></div><${tag}>${esc(p.name)}</${tag}><span class="profile-english">${esc(p.en)}</span><blockquote>${esc(p.quote)}</blockquote></div>`;
+}
 function profileBody(p: Profile) {
-  return `<div class="profile-body"><h2>你的兴趣使用说明</h2><p>${esc(p.body)}</p><div class="note-pair"><section><h3>✦ 自带的本领</h3><p>${esc(p.strength)}</p></section><section><h3>↗ 偶尔的小状况</h3><p>${esc(p.quirk)}</p></section></div><section class="task-note"><span class="eyebrow">给今天的一项小任务</span><p>${esc(p.task)}</p></section></div>`;
+  return `<div class="profile-body"><h2 class="section-caption">你的兴趣使用说明</h2><p>${esc(p.body)}</p><div class="note-pair"><section><h3>✦ 自带的本领</h3><p>${esc(p.strength)}</p></section><section><h3>↗ 偶尔的小状况</h3><p>${esc(p.quirk)}</p></section></div><section class="task-note"><span class="eyebrow">给今天的一项小任务</span><p>${esc(p.task)}</p></section></div>`;
 }
 function result() {
   const p = currentProfile();
   const ss = scores();
-  return `<section class="result-layout"><div class="result-left"><div class="result-title"><span class="eyebrow">${demo ? "图鉴演示 · 非实际测评" : "发现一名新的自然人"}</span><h1>${esc(cleanName(name))}的原形</h1></div><div class="canvas-wrap"><canvas id="result-card" width="1080" height="1440" role="img" aria-label="${esc(p.name + "。" + p.quote + "。" + WELCOME)}"></canvas><div id="card-status" role="status">正在装裱你的结果卡…</div></div><div class="share-actions">${btn("screenshot", "截图模式", "primary", "disabled")}${btn("save", "保存图片 ↓", "secondary", "disabled")}</div><p class="quiet">截图模式可整张入镜；图片为1080 × 1440。<br>手机也可在图片预览里长按保存。</p><div class="follow result-follow">${WELCOME}</div></div><div class="result-right">${profileBody(p)}${
+  return `<section class="result-layout"><div class="result-left"><div class="result-title"><span class="eyebrow">${demo ? "图鉴演示 · 非实际测评" : "发现一名新的自然人"}</span><h1>${esc(cleanName(name))}的原形</h1><div class="profile-code"><b>${p.code}</b><span>${axes.map((a, i) => (p.code[i] === a.letters[0] ? a.a : a.b)).join(" · ")}</span></div></div><div class="canvas-wrap"><canvas id="result-card" width="1080" height="1440" role="img" aria-label="${esc(p.name + "。" + p.quote + "。" + WELCOME)}"></canvas><div id="card-status" role="status">正在装裱你的结果卡…</div></div><div class="share-actions">${btn("screenshot", "截图模式", "primary", "disabled")}${btn("save", "保存图片 ↓", "secondary", "disabled")}</div><p class="quiet">截图模式可整张入镜；图片为1080 × 1440。<br>手机也可在图片预览里长按保存。</p><div class="follow result-follow">${WELCOME}</div></div><div class="result-right">${profileHeading(p)}${profileBody(p)}${
     !demo
       ? `<section class="dimensions"><h2>这次回答里的你</h2><p class="quiet">显示偏好方向，不是能力高低或准确率。</p>${axes.map((a, i) => `<div class="dimension"><div><b>${a.a}</b><small>${Math.abs(ss[i]) <= 2 ? "偏好较轻" : "本次倾向"} · ${ss[i] === 0 ? (ties[i] > 0 ? a.a : a.b) : ss[i] > 0 ? a.a : a.b}</small><b>${a.b}</b></div><div class="axis-bar"><i style="left:${50 - ss[i] * 4.5}%"></i></div></div>`).join("")}<details><summary>看看哪些回答形成了判断</summary>${content.questions
           .filter((_, i) => [0, 5, 10, 15].includes(i))
@@ -240,20 +259,20 @@ function result() {
             : ""
         }</section>`
       : ""
-  }<section class="easter-result">${frog ? `<b>✦ 奶蛙目击者</b><p>它没参加测试，它只是来玩的。贴纸已加入结果卡。</p>${btn("frog", "再看看这位访客", "secondary")}` : seen1 && seen2 ? `<b>部长发现人数对不上。</b><p>你记录的两次异常，似乎来自同一个箱子。</p>${btn("unlock", "查看未登记访客 ↗", "primary")}` : "<p>图鉴里似乎少了一位访客。下次留意物资箱。</p>"}</section><div class="result-bottom">${!demo ? btn("edit", "修改回答", "secondary") : ""}${btn("gallery", "逛逛16型图鉴", "secondary")}${btn("reset", "下一位 / 重新开始", "primary")}</div></div></section>`;
+  }<section class="snack-result">${larva ? '<span class="snack-discovered">快乐搭子已到场</span>' : '<span class="snack-clue">地上好像掉了什么</span>'}${btn("snack", larva ? "🍪 再看看快乐搭子" : "🍪 掉落的饼干", "snack-button", 'aria-label="查看掉落的饼干，寻找新访客"')}</section><section class="easter-result">${frog ? `<b>✦ 奶蛙目击者</b><p>它没参加测试，它只是来玩的。贴纸已加入结果卡。</p>${btn("frog", "再看看这位访客", "secondary")}` : seen1 && seen2 ? `<b>部长发现人数对不上。</b><p>你记录的两次异常，似乎来自同一个箱子。</p>${btn("unlock", "查看未登记访客 ↗", "primary")}` : "<p>图鉴里似乎少了一位访客。下次留意物资箱。</p>"}</section><div class="result-bottom">${!demo ? btn("edit", "修改回答", "secondary") : ""}${btn("gallery", "逛逛16型图鉴", "secondary")}${btn("reset", "下一位 / 重新开始", "primary")}</div></div></section>`;
 }
 function gallery() {
   if (galleryProfile) {
     const p = content.profiles.find((x) => x.code === galleryProfile)!;
-    return `<section class="gallery-detail">${btn("galleryback", "← 返回图鉴", "textbtn")}<span class="eyebrow">图鉴档案 / ${p.code}</span><h1>${esc(p.name)} <small>${esc(p.en)}</small></h1>${img(p.code, "detail-art", p.name)}<blockquote>${esc(p.quote)}</blockquote>${profileBody(p)}${btn("return", "返回刚才页面", "secondary")}</section>`;
+    return `<section class="gallery-detail">${btn("galleryback", "← 返回图鉴", "textbtn")}<span class="eyebrow">图鉴档案</span>${profileHeading(p, true)}${img(p.code, "detail-art", p.name)}${profileBody(p)}${btn("return", "返回刚才页面", "secondary")}</section>`;
   }
-  return `<section><span class="eyebrow">FIELD GUIDE / 16</span><h1>自然很大，<br>每一款都有位置。</h1><p>名字是玩笑，喜欢是真的。点击看看它的故事。</p><div class="gallery-grid">${content.profiles.map((p) => `<button class="specimen" data-action="view-${p.code}">${img(p.code, "", p.name)}<div><b>${esc(p.name)}</b><span>${esc(p.en)}</span><small>${p.code}</small></div></button>`).join("")}</div><p class="quiet">有一种生物没参加测试，却领到了活动证。${frog ? "你已经见过它了。" : "下次留意物资箱。"}</p>${btn("return", "返回刚才页面", "secondary")}</section>`;
+  return `<section><span class="eyebrow">FIELD GUIDE / 16</span><h1>自然很大，<br>每一款都有位置。</h1><p>名字是玩笑，喜欢是真的。点击看看它的故事。</p><figure class="atlas-sheet">${img("ATLAS", "atlas-art", "16种自然界原形角色总览，逐个名称与故事在下方")}<figcaption>16位自然人 · 点击名字翻开档案</figcaption></figure><div class="gallery-grid">${content.profiles.map((p, i) => `<button class="specimen" data-action="view-${p.code}"><span class="specimen-number">${String(i + 1).padStart(2, "0")}</span><div><b>${esc(p.name)}</b><span>${esc(p.en)}</span><small>${p.code}</small></div></button>`).join("")}</div><p class="quiet">有一种生物没参加测试，却领到了活动证。${frog ? "你已经见过它了。" : "下次留意物资箱。"}</p>${btn("return", "返回刚才页面", "secondary")}</section>`;
 }
 function help() {
-  return `<section class="reading"><span class="eyebrow">怎么愉快地认识自己</span><h1>好奇心，<br>没有标准答案。</h1><p>这里的 S 是 Science。自然科学社的天文、鸟类、植物、动物、矿物和食趣，都可以成为你的入口。</p><h2>如何得到结果？</h2><p>20道情境题形成四组偏好，组合成16种原形。平分时会多问一道；4道兴趣题只决定兴趣标签。参考趣味人格测评的形式，题目与分类为原创娱乐设计，不是心理量表。</p>${axes.map((a) => `<p><b>${a.a} / ${a.b}</b>：${a.hint}。两端没有高低。</p>`).join("")}<h2>怎么保存？</h2><p>结果页的“截图模式”会把整张卡缩进屏幕；“保存图片”生成高清PNG，若手机下载没有反应，可在预览中长按图片保存。浏览器系统栏由设备控制。</p><h2>本地与手机</h2><p>电脑解压后双击启动网页即可。手机页面已经适配，但文件管理器或微信聊天里的HTML预览不等于浏览器运行；手机使用浏览器打开受支持的本地文件，或由社团另行托管后访问链接。</p><h2>隐私与下一位</h2><p>不收集上传回答。刷新清除本次进度；“下一位”清除姓名、回答与彩蛋。设备设置和活动配置可保存在当前浏览器。</p><h2>图鉴是创作，不是物种百科</h2><p>灰喜鹊空袭、赤石仙人和黑洞狂吃都是角色笑点。“朱颈斑鸠”按社团部长自称保留。野外发现不入口，观察不追赶、不惊扰。</p>${btn("return", "知道了，返回", "primary")}</section>`;
+  return `<section class="reading"><span class="eyebrow">怎么愉快地认识自己</span><h1>好奇心，<br>没有标准答案。</h1><p>这里的 S 是 Science。自然科学社的天文、鸟类、植物、动物、矿物和食趣，都可以成为你的入口。</p><h2>如何得到结果？</h2><p>20道情境题形成四组偏好，组合成16种原形。平分时会多问一道；4道兴趣题只决定兴趣标签。参考趣味人格测评的形式，题目与分类为原创娱乐设计，不是心理量表。</p>${axes.map((a) => `<p><b>${a.a} / ${a.b}</b>：${a.hint}。两端没有高低。</p>`).join("")}<h2>怎么保存？</h2><p>结果页的“截图模式”会把整张卡缩进屏幕；“保存图片”生成高清PNG，若手机下载没有反应，可在预览中长按图片保存。浏览器系统栏由设备控制。</p><h2>本地与手机</h2><p>在线版可直接用手机浏览器打开社团分享的网址。电脑离线版解压后双击启动网页即可；聊天软件里的HTML文件预览可能无法运行，请使用网页版。</p><h2>隐私与下一位</h2><p>不收集上传回答。刷新清除本次进度；“下一位”清除姓名、回答与彩蛋。设备设置和活动配置可保存在当前浏览器。</p><h2>图鉴是创作，不是物种百科</h2><p>灰喜鹊空袭、赤石仙人和黑洞狂吃都是角色笑点。“朱颈斑鸠”按社团部长自称保留。野外发现不入口，观察不追赶、不惊扰。</p>${btn("return", "知道了，返回", "primary")}</section>`;
 }
 function staff() {
-  return `<section class="reading"><span class="eyebrow">活动现场 / 工作人员面板</span><h1>让下一场探索<br>准备妥当。</h1><p>仅管理这台设备上的活动设置。导入配置会清空当前答题；请在两位参与者之间操作。</p><label for="event-name">活动署名（最多40字）</label><input id="event-name" maxlength="40" value="${esc(content.event)}">${btn("saveevent", "保存活动署名", "primary")}<div class="staff-actions">${btn("exportconfig", "导出完整内容配置", "secondary")}<label class="secondary file-label">导入内容配置<input id="import-config" type="file" accept="application/json,.json"></label>${btn("defaultconfig", "恢复默认内容", "secondary")}</div><p id="config-status" role="status"></p><h2>演示一个原形</h2><p class="quiet">演示卡会标记“图鉴演示”，不会伪造测评回答。</p><div class="demo-grid">${content.profiles.map((p) => btn("demo-" + p.code, esc(p.name), "secondary")).join("")}</div>${btn("demofrog", "演示奶蛙彩蛋", "secondary")}${btn("return", "返回", "textbtn")}</section>`;
+  return `<section class="reading"><span class="eyebrow">活动现场 / 工作人员面板</span><h1>让下一场探索<br>准备妥当。</h1><p>仅管理这台设备上的活动设置。导入配置会清空当前答题；请在两位参与者之间操作。</p><label for="event-name">活动署名（最多40字）</label><input id="event-name" maxlength="40" value="${esc(content.event)}">${btn("saveevent", "保存活动署名", "primary")}<div class="staff-actions">${btn("exportconfig", "导出完整内容配置", "secondary")}<label class="secondary file-label">导入内容配置<input id="import-config" type="file" accept="application/json,.json"></label>${btn("defaultconfig", "恢复默认内容", "secondary")}</div><p id="config-status" role="status"></p><h2>演示一个原形</h2><p class="quiet">演示卡会标记“图鉴演示”，不会伪造测评回答。</p><div class="demo-grid">${content.profiles.map((p) => btn("demo-" + p.code, esc(p.name), "secondary")).join("")}</div>${btn("demofrog", "演示奶蛙彩蛋", "secondary")}${btn("demolarva", "演示红黄双虫彩蛋", "secondary")}${btn("return", "返回", "textbtn")}</section>`;
 }
 function render() {
   document.documentElement.classList.toggle("reduce", reduce);
@@ -272,6 +291,7 @@ function render() {
       event: content.event,
       tags,
       frog,
+      larva,
       demo,
       foodie: ia.filter((v) => v === 5).length >= 2,
     };
@@ -309,7 +329,7 @@ function render() {
         if (file.size > 200000) throw Error("配置文件不能超过200KB。");
         const next = validateContent(JSON.parse(await file.text()));
         content = next;
-        write("sbti-content-v1", JSON.stringify(content));
+        write("sbti-content-v2", JSON.stringify(content));
         reset();
         go("staff");
         document.querySelector("#config-status")!.textContent =
@@ -387,6 +407,29 @@ function showFrog(isDemo = demo) {
     `<div class="modal-card frog-modal">${img("NAIWA", "frog-art", "黄色奶蛙")}<span class="eyebrow">未登记访客 / NAIWA</span><h2>“请问你属于哪一种？”</h2><div class="frog-stamp">来玩的。</div><p>${isDemo ? "工作人员彩蛋演示。" : "已获得「奶蛙目击者」贴纸。"}<br>原形照旧，快乐加一。</p><button class="primary" data-close>收好这份快乐</button></div>`,
   );
 }
+function showLarva(isDemo = demo) {
+  modal(
+    `<div class="modal-card larva-modal">${img("LARVA", "larva-art", "红黄两只爆笑虫子快乐搭子")}<span class="eyebrow">意外到场 / 快乐搭子</span><h2>你留了半块饼干<br>来了两个快乐搭子</h2><p>${isDemo ? "工作人员彩蛋演示" : "「快乐搭子」贴纸已加入结果卡"}<br>饼干分一半 快乐有两份</p><button class="primary" data-close>欢迎一起玩</button></div>`,
+  );
+}
+function showSnack() {
+  if (larva) {
+    showLarva();
+    return;
+  }
+  const el = modal(
+    '<div class="modal-card snack-modal"><span class="snack-illustration" aria-hidden="true">🍪</span><span class="eyebrow">一个不计分的小发现</span><h2>谁的夜宵？</h2><p>一块饼干落在了物资箱旁边<br>旁边传来两声肚子叫</p><button class="primary" data-action="sharesnack">掰一半留着</button><button class="textbtn" data-close>先收好我的报告</button></div>',
+  );
+  el.querySelector('[data-action="sharesnack"]')!.addEventListener(
+    "click",
+    () => {
+      if (larva) return;
+      larva = true;
+      render();
+      showLarva();
+    },
+  );
+}
 function download(blob: Blob, name: string) {
   const url = URL.createObjectURL(blob),
     a = document.createElement("a");
@@ -450,6 +493,7 @@ root.addEventListener("click", (e) => {
   const a = target.dataset.action;
   if (!a) return;
   if (a.startsWith("view-")) {
+    if (!completed) return;
     galleryProfile = a.slice(5);
     if (page !== "gallery") lastPage = page;
     go("gallery");
@@ -458,22 +502,29 @@ root.addEventListener("click", (e) => {
   if (a.startsWith("demo-")) {
     resultCode = a.slice(5);
     demo = true;
+    completed = true;
     name = "图鉴演示";
     tags = [0, 4];
     frog = false;
+    larva = false;
     seen1 = seen2 = false;
     go("result");
     return;
   }
   switch (a) {
     case "home":
-      if (page === "quiz" || page === "tie" || page === "tags") {
+      if (
+        ["quiz", "tie", "tags", "observe", "reveal"].includes(
+          ["gallery", "help", "staff"].includes(page) ? lastPage : page,
+        )
+      ) {
         if (!confirm("返回首页会结束本次测评，确定吗？")) return;
         reset();
       } else go("home");
       break;
     case "start":
       demo = false;
+      completed = false;
       answers = {};
       ia = [];
       ties = {};
@@ -482,6 +533,7 @@ root.addEventListener("click", (e) => {
       seen2 = false;
       observed = false;
       frog = false;
+      larva = false;
       resultCode = "";
       index = 0;
       go("quiz");
@@ -532,6 +584,7 @@ root.addEventListener("click", (e) => {
       break;
     case "edit":
       demo = false;
+      completed = false;
       index = 0;
       ties = {};
       go("quiz");
@@ -540,6 +593,7 @@ root.addEventListener("click", (e) => {
       reset();
       break;
     case "gallery":
+      if (!completed) return;
       if (!["gallery", "help", "staff"].includes(page)) lastPage = page;
       galleryProfile = "";
       go("gallery");
@@ -554,7 +608,7 @@ root.addEventListener("click", (e) => {
       go(a);
       break;
     case "return":
-      go(lastPage === "reveal" ? "home" : lastPage);
+      go(lastPage === "reveal" ? (completed ? "result" : "home") : lastPage);
       break;
     case "sound":
       sound = !sound;
@@ -579,6 +633,12 @@ root.addEventListener("click", (e) => {
     case "demofrog":
       showFrog(true);
       break;
+    case "snack":
+      showSnack();
+      break;
+    case "demolarva":
+      showLarva(true);
+      break;
     case "screenshot": {
       if (!cardReady) return;
       const original =
@@ -600,7 +660,7 @@ root.addEventListener("click", (e) => {
         .value.trim();
       try {
         content = validateContent(next);
-        write("sbti-content-v1", JSON.stringify(content));
+        write("sbti-content-v2", JSON.stringify(content));
         toast("活动署名已保存。");
       } catch (err) {
         toast((err as Error).message);
@@ -618,7 +678,7 @@ root.addEventListener("click", (e) => {
     case "defaultconfig":
       if (confirm("恢复默认内容并清空当前回答？")) {
         content = structuredClone(defaultContent);
-        write("sbti-content-v1", JSON.stringify(content));
+        write("sbti-content-v2", JSON.stringify(content));
         reset();
         go("staff");
       }

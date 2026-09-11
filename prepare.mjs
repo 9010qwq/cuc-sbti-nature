@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { prepareArt } from "./optimize-art.mjs";
 const web = process.argv.includes("--web");
 const ids = [
   "BHTF",
@@ -18,14 +19,16 @@ const ids = [
   "DOSF",
   "DOSP",
   "NAIWA",
+  "LARVA",
 ];
-const entries = ids.map((id) => {
-  const file = `assets/${id}.png`;
+await prepareArt(ids);
+const entries = [...ids, "ATLAS"].map((id) => {
+  const file = `generated/art/${id}.webp`;
   if (!fs.existsSync(file)) throw Error(`Missing ${file}`);
   if (web) return [id, `new URL(${JSON.stringify("../" + file)}, import.meta.url).href`];
   return [
     id,
-    "data:image/png;base64," + fs.readFileSync(file).toString("base64"),
+    "data:image/webp;base64," + fs.readFileSync(file).toString("base64"),
   ];
 });
 fs.writeFileSync(
@@ -45,4 +48,4 @@ css = css.replace(
     : `src: url(data:font/woff2;base64,${fs.readFileSync("node_modules/@fontsource/noto-sans-sc/" + p).toString("base64")}) format('woff2');`,
 );
 fs.writeFileSync("src/font.css", css);
-console.log(web ? "Prepared external images and font subsets for web delivery." : "Prepared 17 images and local OFL font.");
+console.log(web ? "Prepared 18 external character images, one overview and font subsets." : "Prepared 18 embedded characters, one overview and local OFL font.");
