@@ -1,0 +1,547 @@
+[
+  {
+    "id": "questions.q01.options.0",
+    "file": "src/data.ts",
+    "after": "每个厅都转转！"
+  },
+  {
+    "id": "questions.q01.options.1",
+    "file": "src/data.ts",
+    "after": "当然是挑两三个最出色的展厅平均分配时间"
+  },
+  {
+    "id": "questions.q01.options.2",
+    "file": "src/data.ts",
+    "after": "选最感兴趣的，但是顺路别的馆也要看上"
+  },
+  {
+    "id": "questions.q02.options.0",
+    "file": "src/data.ts",
+    "after": "自己转一整圈，看看月亮如何变化。"
+  },
+  {
+    "id": "questions.q02.options.1",
+    "file": "src/data.ts",
+    "after": "先看一小段演示，再上手转几下。"
+  },
+  {
+    "id": "questions.q02.options.2",
+    "file": "src/data.ts",
+    "after": "主要看演示，只尝试最感兴趣的部分"
+  },
+  {
+    "id": "questions.q02.options.3",
+    "file": "src/data.ts",
+    "after": "从头看完演示，随着月相的变化安静思考"
+  },
+  {
+    "id": "questions.q03.options.0",
+    "file": "src/data.ts",
+    "after": "约朋友一起逛。"
+  },
+  {
+    "id": "questions.q03.options.2",
+    "file": "src/data.ts",
+    "after": "先买自己的票，如果碰上熟人再说。"
+  },
+  {
+    "id": "questions.q03.options.3",
+    "file": "src/data.ts",
+    "after": "独自看展更自在。"
+  },
+  {
+    "id": "questions.q04.title",
+    "file": "src/data.ts",
+    "after": "第一次去一座大植物园，交通和门票都搞定了。入园准备怎么逛呢？"
+  },
+  {
+    "id": "questions.q04.options.1",
+    "file": "src/data.ts",
+    "after": "定一个主要目的地，顺路逛逛其他地方"
+  },
+  {
+    "id": "questions.q04.options.2",
+    "file": "src/data.ts",
+    "after": "挑选几个想看的景点，打好提前量"
+  },
+  {
+    "id": "questions.q04.options.3",
+    "file": "src/data.ts",
+    "after": "选好攻略，不走回头路，提前规划完整路线"
+  },
+  {
+    "id": "questions.q05.options.0",
+    "file": "src/data.ts",
+    "after": "校园里还有什么鸟、虫和植物？都想认识！！"
+  },
+  {
+    "id": "questions.q05.options.2",
+    "file": "src/data.ts",
+    "after": "先多看看这只鸟，然后也留意留意别的。"
+  },
+  {
+    "id": "questions.q05.options.3",
+    "file": "src/data.ts",
+    "after": "它平时在哪儿、怎么叫、怎么生活？想一直看它！"
+  },
+  {
+    "id": "questions.q07.options.0",
+    "file": "src/data.ts",
+    "after": "几个同样想看的朋友，散场后还能一起讨论。"
+  },
+  {
+    "id": "questions.q07.options.1",
+    "file": "src/data.ts",
+    "after": "一个熟悉的人，看完可以互相说说感受。"
+  },
+  {
+    "id": "questions.q08.options.0",
+    "file": "src/data.ts",
+    "after": "现在就过去看！！"
+  },
+  {
+    "id": "questions.q08.options.1",
+    "file": "src/data.ts",
+    "after": "纠结几秒钟“…原来的安排怎么办”然后过去看"
+  },
+  {
+    "id": "questions.q09.options.0",
+    "file": "src/data.ts",
+    "after": "星空、昆虫、岩石、植物....不管了各种类型都拿一本！！"
+  },
+  {
+    "id": "questions.q09.options.1",
+    "file": "src/data.ts",
+    "after": "挑几个不同类型，回去换着看"
+  },
+  {
+    "id": "questions.q09.options.2",
+    "file": "src/data.ts",
+    "after": "最近喜欢啥我拿啥"
+  },
+  {
+    "id": "questions.q09.options.3",
+    "file": "src/data.ts",
+    "after": "同一个主题的不同书，严肃研究！"
+  },
+  {
+    "id": "questions.q10.options.0",
+    "file": "src/data.ts",
+    "after": "*疯狂调灯试图照出彩虹。"
+  },
+  {
+    "id": "questions.q10.options.1",
+    "file": "src/data.ts",
+    "after": "跟着博物馆的操作提示调两次，再看看展示。"
+  },
+  {
+    "id": "questions.q10.options.2",
+    "file": "src/data.ts",
+    "after": "多看看展示，还是调两把吧……"
+  },
+  {
+    "id": "questions.q11.options.0",
+    "file": "src/data.ts",
+    "after": "在群里叫几个人一起走！"
+  },
+  {
+    "id": "questions.q11.options.1",
+    "file": "src/data.ts",
+    "after": "问问熟悉的朋友要不要一起去。"
+  },
+  {
+    "id": "questions.q11.options.2",
+    "file": "src/data.ts",
+    "after": "自己去，如果遇到聊得来的人再一起玩。"
+  },
+  {
+    "id": "questions.q11.options.3",
+    "file": "src/data.ts",
+    "after": "自己去、自己慢慢看，安心又宁静！"
+  },
+  {
+    "id": "questions.q12.options.0",
+    "file": "src/data.ts",
+    "after": "不管了想到啥装啥"
+  },
+  {
+    "id": "questions.q12.options.1",
+    "file": "src/data.ts",
+    "after": "想着“没准有人会用”就带上了"
+  },
+  {
+    "id": "questions.q12.options.2",
+    "file": "src/data.ts",
+    "after": "按照想玩的东西仔细规划，有必要还需带备用"
+  },
+  {
+    "id": "questions.q12.options.3",
+    "file": "src/data.ts",
+    "after": "在装包前就想好了所有东西的用途，没有再加的必要"
+  },
+  {
+    "id": "questions.q13.options.0",
+    "file": "src/data.ts",
+    "after": "星球、鸟、花、石头都每样来一份！"
+  },
+  {
+    "id": "questions.q13.options.2",
+    "file": "src/data.ts",
+    "after": "主要围绕一种动物或植物。"
+  },
+  {
+    "id": "questions.q14.options.0",
+    "file": "src/data.ts",
+    "after": "不上手岂不是亏死了！？"
+  },
+  {
+    "id": "questions.q14.options.1",
+    "file": "src/data.ts",
+    "after": "讲解操作两不误，不听讲解会错过蛮多的欸……"
+  },
+  {
+    "id": "questions.q14.options.2",
+    "file": "src/data.ts",
+    "after": "主要听讲解，排在队伍最后一个短暂尝试望远镜。"
+  },
+  {
+    "id": "questions.q15.options.0",
+    "file": "src/data.ts",
+    "after": "拉几个人接着一起逛，多来几个好聊天！"
+  },
+  {
+    "id": "questions.q15.options.1",
+    "file": "src/data.ts",
+    "after": "找一两个同兴趣的好朋友，结伴看。"
+  },
+  {
+    "id": "questions.q15.options.2",
+    "file": "src/data.ts",
+    "after": "先分开，碰到了聊两句。"
+  },
+  {
+    "id": "questions.q16.options.0",
+    "file": "src/data.ts",
+    "after": "把材料摊开，边做边想主题。"
+  },
+  {
+    "id": "questions.q16.options.1",
+    "file": "src/data.ts",
+    "after": "做手帐就是要笑着做，定个小主题做到哪里算哪里！"
+  },
+  {
+    "id": "questions.q16.options.2",
+    "file": "src/data.ts",
+    "after": "“这些素材必须用掉！”其他随便啦"
+  },
+  {
+    "id": "questions.q16.options.3",
+    "file": "src/data.ts",
+    "after": "提前找好博主教程一步一步跟着做。"
+  },
+  {
+    "id": "questions.q17.options.0",
+    "file": "src/data.ts",
+    "after": "每天都讲不同内容，知识面广，开盲盒啦"
+  },
+  {
+    "id": "questions.q17.options.1",
+    "file": "src/data.ts",
+    "after": "有规律的轮换特定主题。"
+  },
+  {
+    "id": "questions.q18.options.0",
+    "file": "src/data.ts",
+    "after": "噢噢可以玩水欸欸欸欸我要玩"
+  },
+  {
+    "id": "questions.q18.options.1",
+    "file": "src/data.ts",
+    "after": "照着示例摆一次，无聊！我要看到血流成河…"
+  },
+  {
+    "id": "questions.q18.options.2",
+    "file": "src/data.ts",
+    "after": "先构想几种可能性，动手是为了验证。"
+  },
+  {
+    "id": "questions.q19.options.0",
+    "file": "src/data.ts",
+    "after": "主动发出邀请，还是有人一起看有意思"
+  },
+  {
+    "id": "questions.q19.options.1",
+    "file": "src/data.ts",
+    "after": "约一个朋友，两个人聊聊天"
+  },
+  {
+    "id": "questions.q19.options.2",
+    "file": "src/data.ts",
+    "after": "自己去美美出片，然后分享给所有人"
+  },
+  {
+    "id": "questions.q19.options.3",
+    "file": "src/data.ts",
+    "after": "日落当然要自己静下心感受…"
+  },
+  {
+    "id": "questions.q20.options.0",
+    "file": "src/data.ts",
+    "after": "选择随机动人的画面，承载回忆才是最重要的。"
+  },
+  {
+    "id": "questions.q20.options.1",
+    "file": "src/data.ts",
+    "after": "有个模糊的想法，按照思路先完成再完美。"
+  },
+  {
+    "id": "questions.q20.options.2",
+    "file": "src/data.ts",
+    "after": "定主要画面，其他自由发挥。"
+  },
+  {
+    "id": "profiles.BHTF.quote",
+    "file": "src/data.ts",
+    "after": "既然发现了有意思的东西，那就快点出发！"
+  },
+  {
+    "id": "profiles.BHTF.body",
+    "file": "src/data.ts",
+    "after": "看到没玩过的东西，你的爪子就闲不住啦。观星、拓印、矿石都到碗里来！最好还有一个好朋友一起折腾，出乎意料的乐趣才叫乐趣啦。"
+  },
+  {
+    "id": "profiles.BHTF.quirk",
+    "file": "src/data.ts",
+    "after": "不是说只试一下吗？突然间想出来很多玩法呢！"
+  },
+  {
+    "id": "profiles.BHTF.task",
+    "file": "src/data.ts",
+    "after": "在外出春秋游活动中，和朋友比赛树叶拼贴画再评奖吧。"
+  },
+  {
+    "id": "profiles.BHTP.quote",
+    "file": "src/data.ts",
+    "after": "今天的快乐，我已经帮大家踩点啦！"
+  },
+  {
+    "id": "profiles.BHTP.body",
+    "file": "src/data.ts",
+    "after": "你喜欢先做点准备，再约上同伴一起玩。在你的兴趣王国里面完全不缺少新奇的东西。兴趣范围广泛，又敢说敢做。身处自然，重在体验！"
+  },
+  {
+    "id": "profiles.BHSF.body",
+    "file": "src/data.ts",
+    "after": "你的兴趣菜单总在加菜。看到没试过的东西，就想按自己的节奏来一口新体验；原本只准备逛一站，路上又被三个小摊吸走了。今天去了哪里不一定说得全，但你记得今天自己特别快乐。"
+  },
+  {
+    "id": "profiles.BHSF.quirk",
+    "file": "src/data.ts",
+    "after": "本来只是吃个晚饭为什么又顺手定了三家未来探店……"
+  },
+  {
+    "id": "profiles.BHSP.strength",
+    "file": "src/data.ts",
+    "after": "把零散的收藏好好做成可展示的展品吧"
+  },
+  {
+    "id": "profiles.BHSP.task",
+    "file": "src/data.ts",
+    "after": "用照片做一个收藏页吧！"
+  },
+  {
+    "id": "profiles.BOTF.quote",
+    "file": "src/data.ts",
+    "after": "全体的目光向我看齐！"
+  },
+  {
+    "id": "profiles.BOTF.body",
+    "file": "src/data.ts",
+    "after": "走着走着，你总能发现点新鲜事：一声怪叫、一片奇怪的叶子，或者同伴头顶的可疑落点。那当然要招呼大家一起看啦！至于接下来往哪儿走，取决于听现场的新消息。"
+  },
+  {
+    "id": "profiles.BOTP.quote",
+    "file": "src/data.ts",
+    "after": "咕顾谷。"
+  },
+  {
+    "id": "profiles.BOSF.strength",
+    "file": "src/data.ts",
+    "after": "在目的地之外，你的眼睛也留得住发生的偶然。"
+  },
+  {
+    "id": "profiles.BOSF.quirk",
+    "file": "src/data.ts",
+    "after": "走着走着可能会忘了之前本来准备去哪哦？"
+  },
+  {
+    "id": "profiles.BOSP.quirk",
+    "file": "src/data.ts",
+    "after": "攻略越做越好，也不要忘了勇敢走出门。"
+  },
+  {
+    "id": "profiles.BOSP.task",
+    "file": "src/data.ts",
+    "after": "为下一次观察写一个主目标和一个备用目标，然后马上出发吧！"
+  },
+  {
+    "id": "profiles.DHTF.task",
+    "file": "src/data.ts",
+    "after": "下一次尝试对同伴的手段进行模仿，没准能有新发现呢？"
+  },
+  {
+    "id": "profiles.DHTP.quote",
+    "file": "src/data.ts",
+    "after": "哪里需要哪里搬，搬完记得给下班。"
+  },
+  {
+    "id": "profiles.DHTP.task",
+    "file": "src/data.ts",
+    "after": "下一次负责掌控大局的时候，记得给自己留一项可以不承担的工作。"
+  },
+  {
+    "id": "profiles.DHSF.quote",
+    "file": "src/data.ts",
+    "after": "是石我赤，每一个兴趣都有其价值！"
+  },
+  {
+    "id": "profiles.DHSF.body",
+    "file": "src/data.ts",
+    "after": "不管多么偏僻的兴趣都自有其发挥作用的时候。钻进喜欢的事情，你能自己折腾很久。这个办法没有成功，你自然有耐心去试出下一个办法。旁边有没有人围观对你来说完全不重要。没有什么困难（拖鞋）可以打倒你！"
+  },
+  {
+    "id": "profiles.DHSF.quirk",
+    "file": "src/data.ts",
+    "after": "不用一直宅宅独自啃硬骨头，偶尔出去透透气呢……？"
+  },
+  {
+    "id": "profiles.DHSF.task",
+    "file": "src/data.ts",
+    "after": "等到第一场雪落下，记得出来打雪仗哦"
+  },
+  {
+    "id": "profiles.DHSP.quirk",
+    "file": "src/data.ts",
+    "after": "还可以再完善，但半成品也同样值得展示。"
+  },
+  {
+    "id": "profiles.DHSP.task",
+    "file": "src/data.ts",
+    "after": "给已有的一份自然观察记录补上日期、地点与一处新细节。也要记录下此刻的心情哦。"
+  },
+  {
+    "id": "profiles.DOTP.quirk",
+    "file": "src/data.ts",
+    "after": "精彩的内容很多，讲解的时候也要注意提问互动哦。"
+  },
+  {
+    "id": "profiles.DOSF.quirk",
+    "file": "src/data.ts",
+    "after": "不要忘了集合时间呀！"
+  },
+  {
+    "id": "profiles.DOSF.task",
+    "file": "src/data.ts",
+    "after": "找一个属于自己的舒适地方，静静的听，告诉自己你现在很安全……"
+  },
+  {
+    "id": "profiles.DOSP.quirk",
+    "file": "src/data.ts",
+    "after": "旧的方法很熟悉，也要记得让新的思考进来！"
+  },
+  {
+    "id": "axes.attention.hint",
+    "file": "src/data.ts",
+    "after": "探索度的增长方式"
+  },
+  {
+    "id": "axes.approach.hint",
+    "file": "src/data.ts",
+    "after": "新兴趣的接纳方式"
+  },
+  {
+    "id": "interests.bird.name",
+    "file": "src/data.ts",
+    "after": "追随羽翼"
+  },
+  {
+    "id": "interests.plant.name",
+    "file": "src/data.ts",
+    "after": "潜心寻木"
+  },
+  {
+    "id": "interests.animal.name",
+    "file": "src/data.ts",
+    "after": "小动物观察员"
+  },
+  {
+    "id": "interests.food.name",
+    "file": "src/data.ts",
+    "after": "大胃袋"
+  },
+  {
+    "id": "interestQuestions.i04.options.3",
+    "file": "src/data.ts",
+    "after": "听懂一种动物的叫声"
+  },
+  {
+    "id": "interestQuestions.i04.options.5",
+    "file": "src/data.ts",
+    "after": "一个关于调味的新发现"
+  },
+  {
+    "id": "src.main.home.nickname_placeholder",
+    "file": "src/main.ts",
+    "after": "匿名神秘自然人也欢迎"
+  },
+  {
+    "id": "src.main.home.dove_alt",
+    "file": "src/main.ts",
+    "after": "傻咕咕拿签到板！"
+  },
+  {
+    "id": "src.main.home.interest_birds",
+    "file": "src/main.ts",
+    "after": "↗ 追随羽翼"
+  },
+  {
+    "id": "src.main.home.interest_plants",
+    "file": "src/main.ts",
+    "after": "♧ 潜心寻木"
+  },
+  {
+    "id": "src.main.home.interest_food",
+    "file": "src/main.ts",
+    "after": "◒ 大胃袋"
+  },
+  {
+    "id": "src.main.home.clue_one_note",
+    "file": "src/main.ts",
+    "after": "目击记录①：这个望远镜是不是长脚了啊喂……"
+  },
+  {
+    "id": "src.main.home.invitation",
+    "file": "src/main.ts",
+    "after": "想知道自己是黑洞还是砖头，或者是…大蟑螂？"
+  },
+  {
+    "id": "src.main.quiz.axis_zero_eyebrow",
+    "file": "src/main.ts",
+    "after": "注意力漫游中……"
+  },
+  {
+    "id": "src.main.result.real_eyebrow",
+    "file": "src/main.ts",
+    "after": "发现一只新的自然人！"
+  },
+  {
+    "id": "src.main.result.frog_missed_hint",
+    "file": "src/main.ts",
+    "after": "图鉴里似乎少了一位访客。下次留意物资箱哦？"
+  },
+  {
+    "id": "src.main.gallery.introduction",
+    "file": "src/main.ts",
+    "after": "名字是玩笑，爱玩是真的。点击看看它的故事。"
+  }
+]
