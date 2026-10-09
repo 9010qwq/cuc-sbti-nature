@@ -448,7 +448,7 @@ async function complete(
   await page.getByText("导入失败：", { exact: false }).waitFor();
   check(
     "legacy v1 import is rejected and rat stays",
-    (await page.locator("#config-status").innerText()).includes("2.0") &&
+    (await page.locator("#config-status").innerText()).includes("2.x") &&
       (await page.locator('[data-action="demo-BHTP"]').innerText()) === "鼠王",
   );
   const bad = { ...cfg, welcome: "missing" };

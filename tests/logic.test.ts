@@ -50,7 +50,7 @@ test("core questions keep five independent questions per axis", () => {
   }
 });
 
-test("2.0 keeps raccoon and replaces magnet with rat king", () => {
+test("2.1 keeps raccoon and replaces magnet with rat king", () => {
   assert.equal(profiles.length, 16);
   assert.equal(profiles.find((p) => p.code === "BHTF")?.name, "浣熊");
   assert.equal(profiles.find((p) => p.code === "BHTP")?.name, "鼠王");
@@ -125,7 +125,7 @@ test("configuration v2 round-trips and rejects v1 without mutating content", () 
   const saved = JSON.stringify(defaultContent);
   assert.deepEqual(validateContent(JSON.parse(saved)), defaultContent);
   const legacy = { ...structuredClone(defaultContent), version: 1 };
-  assert.throws(() => validateContent(legacy), /2.0版.*1.0配置/);
+  assert.throws(() => validateContent(legacy), /2\.x版.*1.0配置/);
   assert.equal(JSON.stringify(defaultContent), saved);
 });
 test("name truncation and empty name", () => {

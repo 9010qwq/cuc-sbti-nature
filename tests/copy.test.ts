@@ -10,7 +10,7 @@ interface CopyChange {
   after: string;
 }
 const changes: CopyChange[] = JSON.parse(
-  readFileSync(new URL("./fixtures/copy-v2.0.1.json", import.meta.url), "utf8"),
+  readFileSync(new URL("./fixtures/copy-v2.1.0.json", import.meta.url), "utf8"),
 );
 const mainSource = readFileSync(new URL("../src/main.ts", import.meta.url), "utf8");
 const axisIds = ["attention", "approach", "company", "pace"];
@@ -50,6 +50,6 @@ for (const id of ["bird", "plant", "food"]) {
   const label = interests.find((interest) => interest.id === id)?.name;
   assert(label && mainSource.includes(label), `${id} label matches homepage`);
 }
-console.log(`PASS ${checks} version 2.0.1 copy values match their stable IDs`);
+console.log(`PASS ${checks} version 2.1.0 copy values match their stable IDs`);
 console.log("PASS unchanged options preserved and clarified wording applied");
 console.log("PASS content length limits and duplicate interest labels");

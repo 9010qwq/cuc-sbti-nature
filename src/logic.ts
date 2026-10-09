@@ -52,7 +52,7 @@ export function validateContent(input: unknown): Content {
     typeof v === "string" && v.trim().length > 0 && v.length <= max;
   if (c.version !== 2)
     throw Error(
-      "请使用2.0版导出的配置（version: 2）。1.0配置含旧角色，不能直接导入；当前内容未更改。",
+      "请使用2.x版导出的配置（version: 2）。1.0配置含旧角色，不能直接导入；当前内容未更改。",
     );
   if (!str(c.event, 40)) throw Error("活动署名需为1—40字。");
   if (c.welcome !== WELCOME) throw Error("公众号关注文案必须完整保留。");
