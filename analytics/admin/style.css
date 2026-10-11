@@ -7,6 +7,23 @@
 * {
   box-sizing: border-box;
 }
+main > *,
+.columns > *,
+form > * {
+  min-width: 0;
+}
+input,
+select {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+header {
+  flex-wrap: wrap;
+}
+.table-scroll {
+  max-width: 100%;
+}
 body {
   margin: 0;
 }

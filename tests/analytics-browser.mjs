@@ -233,6 +233,24 @@ try {
     fullPage: true,
   });
   await admin.setViewportSize({ width: 390, height: 844 });
+  report.narrowLayout = await admin.evaluate(() => ({
+    width: innerWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+    overflowing: [
+      ...document.querySelectorAll(
+        "input,select,header,form,section,.columns,.table-scroll",
+      ),
+    ]
+      .filter((e) => e.getBoundingClientRect().right > innerWidth + 1)
+      .map((e) => ({
+        tag: e.tagName,
+        id: e.id,
+        width: e.getBoundingClientRect().width,
+        right: e.getBoundingClientRect().right,
+      })),
+  }));
+  if (report.narrowLayout.scrollWidth > report.narrowLayout.width + 1)
+    console.log("NARROW_LAYOUT", JSON.stringify(report.narrowLayout));
   check(
     "dashboard narrow layout has no horizontal overflow",
     await admin.evaluate(
