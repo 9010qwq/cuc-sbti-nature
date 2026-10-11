@@ -64,6 +64,9 @@ let queue: Event[] = [],
   token = "",
   disposed = 0;
 let inDemo = false;
+let persistedConsent = false;
+let consentChannel: BroadcastChannel | null = null;
+const activeRequests = new Set<AbortController>();
 const once = new Set<string>();
 const uuid = () => crypto.randomUUID();
 const blocked = () =>
@@ -89,23 +92,61 @@ const storage = {
     } catch {}
   },
 };
-export const analyticsEnabled = () =>
-  analyticsConfigured && consent && !blocked();
+export function analyticsEnabled() {
+  // Storage events may be delayed in a background tab. Recheck the shared key
+  // synchronously at both enqueue and send boundaries before using cached consent.
+  if (
+    consent &&
+    persistedConsent &&
+    storage.get("sbti-analytics-consent") !== "yes"
+  )
+    withdrawConsent(false);
+  return analyticsConfigured && consent && !blocked();
+}
+function clearAnalyticsState() {
+  disposed++;
+  clearTimeout(timer);
+  timer = 0;
+  for (const controller of activeRequests) controller.abort();
+  activeRequests.clear();
+  token = "";
+  queue = [];
+  once.clear();
+  visitor = "";
+  session = "";
+  attempt = null;
+  started = 0;
+  result = "";
+  revision = 0;
+  starts = 0;
+}
+function updateDisclosure() {
+  // Do not re-render the quiz or replace its current answer/canvas on remote withdrawal.
+  document.querySelectorAll(".analytics-privacy").forEach((el) => {
+    el.outerHTML = analyticsPrivacy();
+  });
+}
+function withdrawConsent(broadcast: boolean) {
+  consent = false;
+  persistedConsent = false;
+  clearAnalyticsState();
+  storage.remove("sbti-analytics-consent");
+  storage.remove("sbti-analytics-visitor");
+  if (broadcast) {
+    try {
+      consentChannel?.postMessage("withdraw");
+    } catch {}
+  }
+  updateDisclosure();
+}
 export function setAnalyticsConsent(value: boolean) {
   try {
-    consent = value && analyticsConfigured && !blocked();
-    disposed++;
-    token = "";
-    queue = [];
-    once.clear();
-    attempt = null;
-    result = "";
-    starts = 0;
-    if (!consent) {
-      storage.remove("sbti-analytics-consent");
-      storage.remove("sbti-analytics-visitor");
+    if (!value || !analyticsConfigured || blocked()) {
+      withdrawConsent(true);
       return;
     }
+    clearAnalyticsState();
+    consent = true;
     const prior = JSON.parse(storage.get("sbti-analytics-visitor") || "null");
     visitor =
       prior && prior.expires > Date.now() && /^[\da-f-]{36}$/.test(prior.id)
@@ -121,9 +162,10 @@ export function setAnalyticsConsent(value: boolean) {
       }),
     );
     storage.set("sbti-analytics-consent", "yes");
+    persistedConsent = storage.get("sbti-analytics-consent") === "yes";
     emit("page_view", {}, "page");
   } catch {
-    consent = false;
+    withdrawConsent(true);
   }
 }
 function emit(name: EventName, props: Props = {}, key?: string) {
@@ -147,17 +189,24 @@ async function flush() {
   pending = true;
   const generation = disposed;
   const batch = queue.splice(0, 20);
+  const controller = new AbortController();
+  activeRequests.add(controller);
   try {
-    const request = (route: string, data: unknown) =>
-      fetch(configured + route, {
+    const request = (route: string, data: unknown) => {
+      if (generation !== disposed || !analyticsEnabled()) {
+        controller.abort();
+      }
+      controller.signal.throwIfAborted();
+      return fetch(configured + route, {
         method: "POST",
         credentials: "omit",
         referrerPolicy: "no-referrer",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-        signal: AbortSignal.timeout(3000),
+        signal: AbortSignal.any([controller.signal, AbortSignal.timeout(3000)]),
         keepalive: true,
       });
+    };
     const authorize = async () => {
       const res = await request("/session", {
         visitor,
@@ -171,12 +220,15 @@ async function flush() {
       });
       if (!res.ok || generation !== disposed || !analyticsEnabled())
         return false;
-      token = (await res.json()).token;
+      const authorization = await res.json();
+      if (generation !== disposed || !analyticsEnabled()) return false;
+      token = authorization.token;
       return true;
     };
     if (!token && !(await authorize())) return;
     if (generation !== disposed || !analyticsEnabled()) return;
     const res = await request("/collect", { token, events: batch });
+    if (generation !== disposed || !analyticsEnabled()) return;
     if (res.status === 401) {
       token = "";
       if (await authorize())
@@ -188,8 +240,10 @@ async function flush() {
   } catch {
     /* Drop failures: no offline personal-data queue or unbounded retry. */
   } finally {
+    activeRequests.delete(controller);
     pending = false;
-    if (queue.length) timer = window.setTimeout(() => void flush(), 500);
+    if (queue.length && analyticsEnabled())
+      timer = window.setTimeout(() => void flush(), 500);
   }
 }
 export function analyticsStart(clue1 = false) {
@@ -255,6 +309,27 @@ export function analyticsPrivacy() {
   return `<section class="analytics-privacy"><p>可选活动统计：经你同意，仅记录匿名随机标识、访问/答题进度、结果类型、彩蛋、用时区间及保存等操作；不发送昵称、逐题答案或联系方式。保留30天，浏览器/会话数不等于人数，点击不等于保存或分享成功。服务连接会向运营方提供网络地址，但应用不将其写入统计库。拒绝不影响测试。</p><button type="button" class="textbtn" data-action="analytics-consent">${analyticsEnabled() ? "关闭活动统计" : "同意参与活动统计"}</button><span>${blocked() ? "已遵循浏览器隐私偏好，统计关闭。" : analyticsEnabled() ? "活动统计已开启，可随时关闭。" : "活动统计未开启。"}</span></section>`;
 }
 try {
+  if (analyticsConfigured) {
+    addEventListener("storage", (event) => {
+      if (
+        event.storageArea === localStorage &&
+        (event.key === null ||
+          (event.key === "sbti-analytics-consent" &&
+            event.newValue !== "yes") ||
+          (event.key === "sbti-analytics-visitor" && event.newValue === null))
+      ) {
+        withdrawConsent(false);
+      }
+    });
+    try {
+      consentChannel = new BroadcastChannel("sbti-analytics-consent");
+      consentChannel.addEventListener("message", (event) => {
+        if (event.data === "withdraw") withdrawConsent(false);
+      });
+    } catch {
+      /* The storage event and synchronous send guard remain available. */
+    }
+  }
   if (analyticsConfigured && storage.get("sbti-analytics-consent") === "yes")
     setAnalyticsConsent(true);
   if (analyticsConfigured) {

@@ -217,6 +217,162 @@ try {
     "no share measurements invented",
     store.summary().share === "not_instrumentable",
   );
+  async function crossTabWithdrawal(disableBroadcast) {
+    const tabs = await browser.newContext();
+    await tabs.addInitScript(
+      ({ api, disableBroadcast }) => {
+        if (disableBroadcast)
+          Object.defineProperty(window, "BroadcastChannel", {
+            value: undefined,
+          });
+        window.__telemetryRequests = [];
+        const realFetch = window.fetch.bind(window);
+        window.fetch = (url, options) => {
+          if (!String(url).startsWith(api + "/"))
+            return realFetch(url, options);
+          const record = {
+            route: new URL(url).pathname,
+            body: JSON.parse(options.body),
+            aborted: false,
+            settled: false,
+          };
+          window.__telemetryRequests.push(record);
+          options.signal.addEventListener(
+            "abort",
+            () => {
+              record.aborted = true;
+            },
+            { once: true },
+          );
+          if (record.route === "/collect" && window.__holdCollect) {
+            // Deliberately ignore abort here to model a late 401 that has already
+            // crossed the network boundary. The app must still reject its generation.
+            return new Promise((resolve) => {
+              window.__late401 = () => {
+                record.settled = true;
+                resolve(new Response("{}", { status: 401 }));
+              };
+            });
+          }
+          return realFetch(url, options).finally(() => {
+            record.settled = true;
+          });
+        };
+      },
+      { api, disableBroadcast },
+    );
+    const source = await tabs.newPage(),
+      peer = await tabs.newPage();
+    try {
+      await source.goto(origin);
+      await peer.goto(origin);
+      await source.locator('[data-action="analytics-consent"]').click();
+      await source.waitForFunction(() =>
+        window.__telemetryRequests.some(
+          (r) => r.route === "/collect" && r.settled,
+        ),
+      );
+      await peer.locator('[data-action="analytics-consent"]').click();
+      await peer.waitForFunction(() =>
+        window.__telemetryRequests.some(
+          (r) => r.route === "/collect" && r.settled,
+        ),
+      );
+      const oldVisitor = await peer.evaluate(
+        () => JSON.parse(localStorage.getItem("sbti-analytics-visitor")).id,
+      );
+      await peer.evaluate(() => {
+        window.__holdCollect = true;
+      });
+      await peer.locator('[data-action="start"]').click();
+      await peer.waitForFunction(() => typeof window.__late401 === "function");
+      // A second event is queued behind the held collect request.
+      await peer.locator('[data-answer="0"]').click();
+      await peer.locator('[data-action="next"]').click();
+      await peer.locator('[data-answer="1"]').click();
+      const before = await peer.locator(".question-meta").innerText();
+      await source.locator('[data-action="analytics-consent"]').click();
+      await peer.waitForFunction(
+        () =>
+          document.querySelector('[data-action="analytics-consent"]')
+            .textContent === "同意参与活动统计",
+      );
+      const suffix = disableBroadcast ? " (storage fallback)" : " (cross-tab)";
+      check(
+        "withdrawal propagates without replacing quiz state" + suffix,
+        (await peer.locator(".question-meta").innerText()) === before &&
+          (await peer
+            .locator('[data-answer="1"]')
+            .getAttribute("aria-pressed")) === "true",
+      );
+      check(
+        "withdrawal aborts in-flight collection" + suffix,
+        await peer.evaluate(() =>
+          window.__telemetryRequests.some(
+            (r) => r.route === "/collect" && r.aborted,
+          ),
+        ),
+      );
+      const sent = await peer.evaluate(() => window.__telemetryRequests.length);
+      await peer.evaluate(() => window.__late401());
+      await peer.locator('[data-action="next"]').click();
+      await peer.waitForTimeout(700); // Beyond both queue timers: no delayed retry/session request.
+      check(
+        "late 401 and queued events cannot reauthorize after withdrawal" +
+          suffix,
+        (await peer.evaluate(() => window.__telemetryRequests.length)) === sent,
+      );
+      check(
+        "shared identity removed on withdrawal" + suffix,
+        await peer.evaluate(
+          () =>
+            localStorage.getItem("sbti-analytics-visitor") === null &&
+            localStorage.getItem("sbti-analytics-consent") === null,
+        ),
+      );
+      await peer.evaluate(() => {
+        window.__holdCollect = false;
+      });
+      await peer.locator('[data-action="analytics-consent"]').click();
+      await peer.waitForFunction(
+        (sent) =>
+          window.__telemetryRequests
+            .slice(sent)
+            .some((r) => r.route === "/collect" && r.settled),
+        sent,
+      );
+      const restarted = await peer.evaluate(
+        (sent) => ({
+          visitor: JSON.parse(localStorage.getItem("sbti-analytics-visitor"))
+            .id,
+          events: window.__telemetryRequests
+            .slice(sent)
+            .filter((r) => r.route === "/collect")
+            .flatMap((r) => r.body.events),
+        }),
+        sent,
+      );
+      check(
+        "explicit new consent uses fresh identity and no stale queued attempt" +
+          suffix,
+        restarted.visitor !== oldVisitor &&
+          restarted.events.length === 1 &&
+          restarted.events[0].name === "page_view" &&
+          restarted.events[0].attempt === null,
+      );
+      check(
+        "consent in another tab does not silently reenable a withdrawn tab" +
+          suffix,
+        (await source
+          .locator('[data-action="analytics-consent"]')
+          .innerText()) === "同意参与活动统计",
+      );
+    } finally {
+      await tabs.close();
+    }
+  }
+  await crossTabWithdrawal(false);
+  await crossTabWithdrawal(true);
   const adminCtx = await browser.newContext({
       httpCredentials: { username: "admin", password: pass },
       viewport: { width: 1280, height: 960 },
