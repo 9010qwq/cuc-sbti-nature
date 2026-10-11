@@ -4,7 +4,7 @@ const js = fs
   .replace(/<\/script/gi, "<\\/script");
 const css = fs.readFileSync("dist/cuc-sbti-nature.css", "utf8");
 const html =
-  '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4f0e5"><meta name="application-version" content="2.1.0"><title>SBTI 2.1 · 自然界原形 · CUC自然科学社</title><style>' +
+  '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4f0e5"><meta name="application-version" content="2.2.0"><title>SBTI 2.2 · 自然界原形 · CUC自然科学社</title><style>' +
   css +
   '</style></head><body><div id="app"></div><script>' +
   js +

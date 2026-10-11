@@ -1416,3 +1416,6 @@ input:not([type="file"]) {
     font-size: 12px;
   }
 }
+/* Optional analytics disclosure keeps the main quiz layout unchanged. */
+.analytics-privacy { max-width: 760px; margin: 24px auto 0; padding: 16px; border: 1px solid #bbc4ae; text-align: left; font-size: 13px; line-height: 1.7; }
+.analytics-privacy span { display: block; }

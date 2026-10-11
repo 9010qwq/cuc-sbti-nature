@@ -1,0 +1,24 @@
+name: SBTI checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:analytics
+      - run: npm run build:web
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:web
+      - run: npm run test:analytics:browser

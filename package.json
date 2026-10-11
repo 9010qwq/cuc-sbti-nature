@@ -1,6 +1,6 @@
 {
   "name": "cuc-sbti-nature",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,10 @@
     "build:web": "node prepare.mjs --web && tsc --noEmit && vite build --mode web --configLoader native && node pack-web.mjs",
     "test": "node --experimental-strip-types tests/logic.test.ts && node --experimental-strip-types tests/copy.test.ts",
     "test:browser": "node tests/browser.cjs",
-    "test:web": "node tests/online.cjs"
+    "test:web": "node tests/online.cjs",
+    "test:analytics": "node --test tests/analytics.test.mjs",
+    "test:analytics:browser": "node tests/analytics-browser.mjs",
+    "analytics:serve": "node analytics/server.mjs"
   },
   "devDependencies": {
     "playwright": "^1.62.1",

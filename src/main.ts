@@ -20,6 +20,18 @@ import {
   validateContent,
 } from "./logic";
 import { drawCard, canvasBlob, type CardData } from "./card";
+import {
+  analyticsConfigured,
+  analyticsEnabled,
+  analyticsPrivacy,
+  setAnalyticsConsent,
+  analyticsStart,
+  analyticsQuestion,
+  analyticsComplete,
+  analyticsEvent,
+  analyticsReset,
+  analyticsOperation,
+} from "./analytics";
 const root = document.querySelector<HTMLDivElement>("#app")!;
 const esc = (s: unknown) =>
   String(s).replace(
@@ -123,10 +135,12 @@ function tick() {
 function go(p: Page, scroll = true) {
   clearTimeout(revealTimer);
   page = p;
+  if (p === "quiz" && !demo) analyticsQuestion(index + 1);
   render();
   if (scroll) window.scrollTo({ top: 0, behavior: "instant" });
 }
 function reset() {
+  analyticsReset();
   name = "";
   answers = {};
   ia = [];
@@ -171,6 +185,7 @@ function finish() {
     return;
   }
   completed = true;
+  analyticsComplete(resultCode, ia.filter((v) => v === 5).length >= 2);
   go("reveal");
   revealTimer = window.setTimeout(
     () => {
@@ -187,7 +202,7 @@ function header() {
   return `<header class="topbar"><button class="brand" data-action="home" aria-label="S Science BTI 自然界原形，返回首页"><span class="brand-mark"><b><span class="science-letter">S<i aria-hidden="true"></i></span>BTI</b><span class="science-caption">Science</span></span><small>自然界原形</small></button><nav aria-label="页面导航">${canBrowse ? btn("gallery", "图鉴", `navbtn ${page === "gallery" ? "active" : ""}`, page === "gallery" ? 'aria-current="page"' : "") : ""}${btn("help", "说明", `navbtn ${page === "help" ? "active" : ""}`, page === "help" ? 'aria-current="page"' : "")}</nav></header>`;
 }
 function footer() {
-  return `<footer><div class="follow">欢迎关注微信公众号 <strong>CUC自然科学社</strong></div><p>好奇心没有标准答案 · SBTI 2.1</p><div>${btn("sound", sound ? "声音开" : "声音关", "textbtn", `aria-pressed="${sound}"`)}${btn("reduce", reduce ? "动态效果：少" : "动态效果：标准", "textbtn", `aria-pressed="${reduce}"`)}${btn("staff", "工作人员", "textbtn")}</div></footer>`;
+  return `<footer><div class="follow">欢迎关注微信公众号 <strong>CUC自然科学社</strong></div><p>好奇心没有标准答案 · SBTI 2.2</p><div>${btn("sound", sound ? "声音开" : "声音关", "textbtn", `aria-pressed="${sound}"`)}${btn("reduce", reduce ? "动态效果：少" : "动态效果：标准", "textbtn", `aria-pressed="${reduce}"`)}${btn("staff", "工作人员", "textbtn")}</div>${analyticsPrivacy()}</footer>`;
 }
 function home() {
   return `<section class="hero"><div class="hero-copy"><div class="eyebrow">FIELD NOTES · ${esc(content.event)}</div><h1>测测你的<br><em>自然界原形</em><span class="tiny-star">✦</span></h1><p class="lede">宇宙很大，你是哪一款？<br>从星空到石头，从看鸟到狂吃。<br>来认领一只属于你的自然界原形。</p><div class="hero-meta"><span>S = Science</span><span>16 种原形</span><span>约 4—6 分钟</span></div><label class="name-label" for="nickname">给观察记录留个名字 <small>选填，最多12字</small></label><input id="nickname" maxlength="24" autocomplete="off" placeholder="匿名神秘自然人也欢迎" value="${esc(name)}"><button class="primary start" data-action="start">看看我的原形 <span>↗</span></button><p class="privacy">不用登录，回答只留在本次页面里。</p></div><div class="hero-art"><div class="orbit"></div>${img("BHSF", "hero-eat", "拿着勺子的黑洞")}${img("DHTP", "hero-brick", "背着物资的砖头")}${img("BOTP", "hero-dove", "傻咕咕拿签到板！")}<span class="handnote">一起去看看<br>世界还有什么。</span><div class="hero-box">${box(1)}</div><span class="specimen-stamp">野生兴趣<br>正在出没</span></div></section><section class="intro-strip"><span>✦ 仰望星空</span><span>↗ 追随羽翼</span><span>♧ 潜心寻木</span><span>◎ 动物观察</span><span>◇ 捡石头的</span><span>◒ 大胃袋</span></section>${seen1 ? '<p class="clue-note">目击记录①：这个望远镜是不是长脚了啊喂……</p>' : ""}<section class="home-note"><b>想知道自己是黑洞还是砖头，或者是…大蟑螂？</b><p><span>20个生活小场景 + 4个兴趣小问题</span><span>选更像平时的自己</span><span>不用选看起来更厉害的答案</span></p></section>`;
@@ -311,6 +326,8 @@ function render() {
           const el = document.querySelector("#card-status");
           if (el) el.textContent = String(e.message);
           toast("装裱失败，可返回报告重试。");
+          if (!demo)
+            analyticsEvent("export_failed", { error: "card" }, "card-error");
         }
       });
   }
@@ -425,6 +442,7 @@ function showSnack() {
     () => {
       if (larva) return;
       larva = true;
+      if (!demo) analyticsEvent("egg_unlock", { egg: "larva" }, "egg-larva");
       render();
       showLarva();
     },
@@ -440,6 +458,9 @@ function download(blob: Blob, name: string) {
 }
 async function saveCard() {
   if (!cardReady) return;
+  const real = !demo;
+  const record = analyticsOperation();
+  if (real) analyticsEvent("save_click");
   const canvas = document.querySelector<HTMLCanvasElement>("#result-card")!;
   try {
     const blob = await canvasBlob(canvas);
@@ -454,7 +475,20 @@ async function saveCard() {
       }
     });
     observer.observe(document.body, { childList: true });
+    const preview = el.querySelector<HTMLImageElement>(".export-image")!;
+    void preview
+      .decode()
+      .then(() => {
+        if (real) record("preview_ready");
+      })
+      .catch(() => {
+        if (real) record("export_failed", { error: "png" });
+      });
+    el.querySelector("a")!.addEventListener("click", () => {
+      if (real) record("download_click");
+    });
   } catch (e) {
+    if (real) record("export_failed", { error: "png" });
     toast((e as Error).message);
   }
 }
@@ -500,6 +534,7 @@ root.addEventListener("click", (e) => {
     return;
   }
   if (a.startsWith("demo-")) {
+    analyticsReset(true);
     resultCode = a.slice(5);
     demo = true;
     completed = true;
@@ -512,6 +547,12 @@ root.addEventListener("click", (e) => {
     return;
   }
   switch (a) {
+    case "analytics-consent":
+      if (analyticsConfigured) {
+        setAnalyticsConsent(!analyticsEnabled());
+        render();
+      }
+      break;
     case "home":
       if (
         ["quiz", "tie", "tags", "observe", "reveal"].includes(
@@ -523,6 +564,7 @@ root.addEventListener("click", (e) => {
       } else go("home");
       break;
     case "start":
+      analyticsStart(seen1);
       demo = false;
       completed = false;
       answers = {};
@@ -563,11 +605,13 @@ root.addEventListener("click", (e) => {
       go("quiz");
       break;
     case "clue1":
+      if (!seen1 && !demo) analyticsEvent("egg_clue", { clue: 1 }, "clue1");
       seen1 = true;
       render();
       toast("目击记录①：望远镜似乎长脚了。");
       break;
     case "clue2":
+      if (!seen2 && !demo) analyticsEvent("egg_clue", { clue: 2 }, "clue2");
       seen2 = true;
       render();
       toast("目击记录②：它可能不是望远镜。");
@@ -622,6 +666,8 @@ root.addEventListener("click", (e) => {
       break;
     case "unlock":
       if (seen1 && seen2) {
+        if (!frog && !demo)
+          analyticsEvent("egg_unlock", { egg: "frog" }, "egg-frog");
         frog = true;
         render();
         showFrog();
@@ -641,6 +687,7 @@ root.addEventListener("click", (e) => {
       break;
     case "screenshot": {
       if (!cardReady) return;
+      if (!demo) analyticsEvent("screenshot_click");
       const original =
         document.querySelector<HTMLCanvasElement>("#result-card")!;
       const el = modal(

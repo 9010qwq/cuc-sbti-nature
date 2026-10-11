@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SBTI · 活动数据</title>
+    <link rel="stylesheet" href="/admin/style.css" />
+    <script src="/admin/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">CUC 自然科学社 · 私有管理</p>
+          <h1>活动里的好奇心</h1>
+          <p>从统计接入后，理解参与过程与自然界原形。</p>
+        </div>
+        <span id="mode" class="badge">正在连接</span>
+      </header>
+      <p id="status" role="status">正在读取统计服务；此时不显示零值。</p>
+      <form id="filters">
+        <label>开始时间<input id="from" type="datetime-local" required /></label
+        ><label>结束时间<input id="to" type="datetime-local" required /></label
+        ><label
+          >时区<select id="offset">
+            <option value="480">北京时间 UTC+8</option>
+            <option value="0">UTC</option>
+          </select></label
+        ><label
+          >版本<select id="version">
+            <option value="">全部版本</option>
+          </select></label
+        ><label
+          >设备<select id="device">
+            <option value="">全部设备</option>
+            <option value="phone">手机</option>
+            <option value="tablet">平板</option>
+            <option value="desktop">电脑</option>
+          </select></label
+        ><button>查看数据</button
+        ><button type="button" id="export" disabled>导出汇总 JSON</button>
+      </form>
+      <p id="freshness"></p>
+      <section id="content" hidden>
+        <p id="visits"></p>
+        <div id="cards" class="cards"></div>
+        <section>
+          <h2>开始测验批次漏斗</h2>
+          <p>
+            按所选时段内开始的测验关联后续进度。修改回答不增加完成数；跨时段完成仍计入原开始批次。
+          </p>
+          <div id="funnel" class="cards"></div>
+          <p id="pending"></p>
+        </section>
+        <section>
+          <h2>活动趋势 · 每小时</h2>
+          <p>
+            按事件实际入库时间计数，和开始批次漏斗口径不同。无事件的小时不列出。
+          </p>
+          <div id="trend"></div>
+        </section>
+        <div class="columns">
+          <section>
+            <h2>结果分布 · 16 种原形</h2>
+            <p>已完成测验按最新修订结果分组，每次测验只出现一次。</p>
+            <div id="results"></div>
+            <div id="subtypes"></div>
+          </section>
+          <section>
+            <h2>隐藏访客</h2>
+            <p>
+              记录首次实际解锁；重复查看不增加发现数。次数、会话与匿名浏览器分别去重。
+            </p>
+            <div id="eggs"></div>
+            <h2>答题用时</h2>
+            <p>
+              第一次完成时的经过时间，包含切到后台的时间；原始时长以15秒粒度保存。
+            </p>
+            <div id="durations"></div>
+          </section>
+        </div>
+        <section>
+          <h2>题目到达与超时未完成</h2>
+          <p>
+            每次测验每题仅记一次到达，不记录选项。未完成且30分钟无后续事件才推算超时，列在最高到达题目；不能断言用户主动放弃，迟到完成可改变统计。
+          </p>
+          <div id="questions"></div>
+        </section>
+        <section>
+          <h2>操作与可观测错误</h2>
+          <p>
+            保存点击 → PNG预览生成 →
+            下载点击分别记录。下载点击和分享面板返回均不能证明系统保存/转发成功。
+          </p>
+          <div id="events"></div>
+          <p>
+            分享：暂不可测。当前产品没有分享按钮；系统长按保存、微信转发结果无法观测。错误只记录固定类别，不保存错误文本、路径或堆栈。
+          </p>
+        </section>
+      </section>
+      <footer>
+        只覆盖同意统计且成功送达的事件。匿名浏览器/会话不是真实人数；清除存储、换浏览器或共用设备都会影响估算。“下一位”无法区别新玩家与同人重测。历史访问、未更新的旧标签页和未同意参与的活动不能回补。记录保留30天。本页面和汇总接口均需服务端认证。
+      </footer>
+    </main>
+  </body>
+</html>

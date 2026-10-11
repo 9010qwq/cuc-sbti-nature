@@ -9,3 +9,6 @@ src/font.css
 .env.*
 *.log
 *.zip
+analytics-data/
+*.sqlite
+*.sqlite-*
